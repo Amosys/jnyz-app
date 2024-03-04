@@ -1,0 +1,5 @@
+/* components/collect/footer/index.wxss */
+.center{
+  text-align: center;
+  align-content: center;
+}

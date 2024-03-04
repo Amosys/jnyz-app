@@ -1,0 +1,16 @@
+<!--pages/auth/login/index.wxml-->
+<view class="container">
+  <view class="login-form">
+    <view class="form-group">
+      <i-input placeholder="请输入手机号码" type="number" mode="wrapped"></i-input>
+    </view>
+    <view class="form-group">
+      <i-input placeholder="请输入密码" type="password" mode="wrapped"></i-input>
+    </view>
+    <view class="form-group">
+      <i-input placeholder="请输入验证码" type="password"></i-input>
+      <image src="{{ captchaInfo.picPath }}" style="width: 100px; height: 20px" bind:tap="onCaptchaTap"/>
+    </view>
+  </view>
+  <button bind:tap="onLogin">登陆</button>
+</view>

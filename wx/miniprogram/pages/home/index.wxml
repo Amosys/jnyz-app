@@ -1,0 +1,5 @@
+<!--pages/home/index.wxml-->
+<view>
+  <button bind:tap="onCollectInfo">信息录入</button>
+  <button bind:tap="onCollectInfo">云音响管理</button>
+</view>

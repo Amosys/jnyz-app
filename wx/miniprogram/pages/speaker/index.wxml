@@ -1,0 +1,21 @@
+<!--pages/speaker/index.wxml-->
+<wxs module="time" src="../../utils/time.wxs"></wxs>
+<view>
+  <view class="sn_ipt">
+    <text class="scan_btn" style="background-image: url(../../images/scan.png);background-size: 100% 100%;" bind:tap="onScan"></text>
+    <i-input value="{{ speakerSN }}" autofocus placeholder="请输入云音响SN号" mode="wrapped"></i-input>
+  </view>
+  <view>
+    <button class="btn" bind:tap="onGetSpeaker" type="success">获取</button>
+  </view>
+  <i-panel title="历史获取记录">
+    <scroll-view scroll-y="true" style="height: 500rpx;" >
+      <i-cell-group>
+        <view wx:for="{{ historyGet}}" wx:for-item="item" wx:for-index="idx">
+          <i-cell title="{{ item.storeName }}" label="{{ item.sn }}" isLink value="{{ time.getDateDiff(item.time) }}" bind:click="onHistoryClick" id="historyGet_{{ idx }}"> </i-cell>
+        </view>
+      </i-cell-group>
+    </scroll-view>
+  </i-panel>
+  <i-toast id="toast" />
+</view>

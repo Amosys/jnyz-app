@@ -1,0 +1,13 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:08:14.948	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:55:45.079	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:02:23.702	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:09.590	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:22.070	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_user.go:56	登陆失败! 用户名不存在或者密码错误!	{"error": "record not found"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:31.733	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_user.go:56	登陆失败! 用户名不存在或者密码错误!	{"error": "record not found"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:40.384	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_user.go:56	登陆失败! 用户名不存在或者密码错误!	{"error": "record not found"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:25:04.558	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:27:51.004	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:16.862	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:56.694	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:29:11.586	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:30:57.095	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:9999: use of closed network connection

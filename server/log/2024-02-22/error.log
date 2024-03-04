@@ -1,0 +1,2 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 20:28:17.170	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:8888: use of closed network connection
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 22:18:44.999	[31merror[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:53	accept tcp [::]:8888: use of closed network connection

@@ -1,0 +1,23 @@
+<view class="container">
+  <i-input wx:if="{{itemInfo.mode=='input'}}" i-class="{{itemInfo.necessary ? 'necessary' : ''}}{{itemInfo.fclass}}" title="{{itemInfo.title}}" 
+    type="{{itemInfo.type}}" name="{{itemInfo.title}}" placeholder="{{itemInfo.placeholder}}" value="{{inputInfo.value}}"></i-input>
+  <i-checkbox wx:if="{{itemInfo.mode=='checkbox'}}" i-class="{{itemInfo.fclass}}" value="{{itemInfo.title}}" 
+    name="{{itemInfo.name}}" checked="{{itemInfo.checked}}" position="right"></i-checkbox>
+  <view wx:if="{{itemInfo.mode=='picker'}}" >
+    <picker bindchange="onPickerChange" class="{{itemInfo.fclass}}" range="{{itemInfo.indexItem}}" value="{{pickerInfo.index}}">
+    <i-cell title="{{itemInfo.title}}" is-link>
+      <text slot="footer">{{pickerInfo.itemContent}}</text>
+    </i-cell>
+    </picker>
+    <view wx:if="{{childVisible}}">
+      <view wx:for="{{itemInfo.child}}" wx:for-item="item">
+        <step-form-item class="step-form-item" itemInfo="{{item}}" id="{{item.id}}"></step-form-item>
+      </view>
+    </view>
+  </view>
+  <picker  wx:if="{{itemInfo.mode=='regionPicker'}}" mode="region" bindchange="onRegionPickerChange" i-class="{{itemInfo.fclass}}" value="{{itemInfo.indexItem}}">
+    <i-cell title="{{itemInfo.title}}" is-link>
+      <text slot="footer">{{regionPickerInfo.region[0]}} {{regionPickerInfo.region[1]}} {{regionPickerInfo.region[2]}}</text>
+    </i-cell>
+  </picker>
+</view>

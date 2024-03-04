@@ -1,0 +1,4 @@
+<!--components/collect/footer/index.wxml-->
+<view>
+  <i-button class="center" bind:click="onTap">{{isFinish ? '完成' : '下一步'}}</i-button>
+</view>

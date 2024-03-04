@@ -1,0 +1,7 @@
+/* pages/collect/step1/index.wxss */
+.center{
+  text-align: center;
+  background-color: green;
+  height: 40px;
+  line-height: 40px;
+}

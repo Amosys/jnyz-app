@@ -1,0 +1,22 @@
+/* pages/my/index.wxss */
+.head-container{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  height: 260rpx;
+}
+
+.head-userinfo-box{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.head-image{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.head-username{
+  justify-self: start;
+}

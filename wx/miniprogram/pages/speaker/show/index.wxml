@@ -1,0 +1,7 @@
+<view>
+  <i-cell-group>
+    <i-cell title="序列号" value="{{ speakerInfo.sn }}"></i-cell>
+    <i-cell title="商户名称" value="{{ speakerInfo.customerName }}"></i-cell>
+    <i-cell title="门店名称" value="{{ speakerInfo.storeName }}"></i-cell>
+  </i-cell-group>
+</view>

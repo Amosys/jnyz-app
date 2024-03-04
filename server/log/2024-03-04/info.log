@@ -1,0 +1,4 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/04 - 14:37:45.335	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/04 - 14:37:45.337	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/04 - 14:37:45.338	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024/03/04 - 14:37:45.338	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}

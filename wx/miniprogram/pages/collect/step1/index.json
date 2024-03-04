@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "i-row": "../../../dist/row/index",
+    "i-col": "../../../dist/col/index",
+    "i-panel": "../../../dist/panel/index",
+    "i-input": "../../../dist/input/index",
+    "i-button": "../../../dist/button/index",
+    "i-toast": "../../../dist/toast/index",
+    "step-header": "../../../components/collect/header/index",
+    "step-footer": "../../../components/collect/footer/index",
+    "step-form-item": "../../../components/collect/formItem/index",
+    "ocr-navigator": "plugin://ocr-plugin/ocr-navigator"
+  }
+}

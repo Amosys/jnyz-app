@@ -1,0 +1,9 @@
+<!--components/Collect/header/index.wxml-->
+<view class="container">
+  <i-steps current="{{currentStep}}">
+    <block wx:for="{{steps}}" wx:key="index" wx:for-item="step">
+      <i-step title="{{step}}">
+      </i-step>
+    </block>
+  </i-steps>
+</view>

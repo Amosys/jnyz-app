@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-input": "../../../dist/input/index",
+    "i-checkbox": "../../../dist/checkbox/index",
+    "i-cell": "../../../dist/cell/index",
+    "step-form-item": "./index"
+  }
+}

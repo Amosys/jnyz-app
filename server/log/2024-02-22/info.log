@@ -1,0 +1,7 @@
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 20:26:05.392	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 20:26:05.393	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 20:26:05.393	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 22:13:57.683	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 22:13:57.684	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 22:13:57.685	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024/02/22 - 22:14:06.150	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_initdb.go:57	前往初始化数据库

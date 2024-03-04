@@ -1,0 +1,33 @@
+<!--pages/collect/step1/index.wxml-->
+<view class="container">
+  <i-row>
+    <step-header class="header" steps="{{StepInfo.steps}}" currentStep="{{StepInfo.currentStep}}">
+      <view>步骤一</view>
+    </step-header>
+  </i-row>
+  <i-row>
+    <view class="body">
+      <view wx:for="{{stepFormInfo.steps}}" wx:for-item="step" wx:for-index="index">
+        <view wx:if="{{StepInfo.currentStep==index}}">
+          <view wx:for="{{step.panels}}" wx:for-item="panel">
+            <form >
+              <i-panel title="{{panel.title}}">
+                <view wx:for="{{panel.items}}" wx:for-item="item">
+                  <step-form-item class="step-form-item" itemInfo="{{item}}" id="{{item.id}}"></step-form-item>
+                </view>
+              </i-panel>
+            </form>
+          </view>
+        </view>
+      </view>
+    </view>
+  </i-row>
+  <i-row>
+    <view class="footer">
+      <i-button wx:if="{{StepInfo.currentStep!=0}}" i-class="center" bind:click="onBackStep" type="primary" size="small">上一步</i-button>
+      <i-button wx:if="{{StepInfo.currentStep==StepInfo.steps.length - 1}}" i-class="center" bind:click="onTap" type="success">完成</i-button>
+      <button wx:else bind:click="onNextStep" class="center" type="primary" size="small">下一步</button>
+    </view>
+  </i-row>
+  <i-toast id="toast" />
+</view>

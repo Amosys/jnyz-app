@@ -1,0 +1,8 @@
+.necessary::before{
+  content: '*';
+  color: red;
+}
+
+.error{
+  border-color: red;
+}
