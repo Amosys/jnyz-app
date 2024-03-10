@@ -1,0 +1,21 @@
+version: '3.0'
+
+services:
+  myapp:
+    image: jnyz-app:v1
+    container_name: myapp
+    #选择端口
+    ports:
+      - 8888:8888
+    restart: always
+    volumes:
+      - /root/repo/server/JNYZ/runtime/log:/go/src/app/log
+    networks:
+      - nginx-proxy
+      - mysql
+
+networks:
+  nginx-proxy:
+    external: true
+  mysql:
+    external: true
