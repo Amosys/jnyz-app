@@ -2,10 +2,11 @@ package initialize
 
 import (
 	"context"
+	"jnyz-app/server/model/example"
+	sysModel "jnyz-app/server/model/system"
+	"jnyz-app/server/service/system"
+
 	adapter "github.com/casbin/gorm-adapter/v3"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
-	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
 	"gorm.io/gorm"
 )
 

@@ -3,9 +3,10 @@ package system
 import (
 	"context"
 
-	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/utils"
+	sysModel "jnyz-app/server/model/system"
+	"jnyz-app/server/service/system"
+	"jnyz-app/server/utils"
+
 	"github.com/gofrs/uuid/v5"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -45,8 +46,8 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 	if !ok {
 		return ctx, system.ErrMissingDBContext
 	}
-	password := utils.BcryptHash("d41d8cd98f00b204e9800998ecf8427e")
-	adminPassword := utils.BcryptHash("d41d8cd98f00b204e9800998ecf8427e")
+	password := utils.BcryptHash("afdd0b4ad2ec172c586e2150770fbf9e")
+	adminPassword := utils.BcryptHash("afdd0b4ad2ec172c586e2150770fbf9e")
 
 	entities := []sysModel.SysUser{
 		{

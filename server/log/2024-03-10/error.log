@@ -1,0 +1,4 @@
+[jnyz-app/server]2024/03/10 - 19:39:09.588	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_export_template.go:247	文件获取失败!	{"error": "request Content-Type isn't multipart/form-data"}
+[jnyz-app/server]2024/03/10 - 19:39:09.591	[31merror[0m	/home/amos/repo/jnyz-app/server/middleware/operation.go:117	create operation record error:	{"error": "Error 1366 (22007): Incorrect string value: '\\xEE\\x9Dh^\\x01\\x00...' for column `jnyz-app`.`sys_operation_records`.`body` at row 1"}
+[jnyz-app/server]2024/03/10 - 19:41:03.697	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_export_template.go:247	文件获取失败!	{"error": "no multipart boundary param in Content-Type"}
+[jnyz-app/server]2024/03/10 - 20:48:50.385	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:54	accept tcp [::]:9999: use of closed network connection

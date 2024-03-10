@@ -2,9 +2,10 @@ package system
 
 import (
 	"context"
-	sysModel "github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/utils"
+	sysModel "jnyz-app/server/model/system"
+	"jnyz-app/server/service/system"
+	"jnyz-app/server/utils"
+
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )

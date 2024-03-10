@@ -1,15 +1,15 @@
 package {{.Package}}
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-    "github.com/flipped-aurora/gin-vue-admin/server/model/{{.Package}}"
-    {{.Package}}Req "github.com/flipped-aurora/gin-vue-admin/server/model/{{.Package}}/request"
-    "github.com/flipped-aurora/gin-vue-admin/server/model/common/response"
-    "github.com/flipped-aurora/gin-vue-admin/server/service"
+	"jnyz-app/server/global"
+    "jnyz-app/server/model/{{.Package}}"
+    {{.Package}}Req "jnyz-app/server/model/{{.Package}}/request"
+    "jnyz-app/server/model/common/response"
+    "jnyz-app/server/service"
     "github.com/gin-gonic/gin"
     "go.uber.org/zap"
     {{- if .AutoCreateResource}}
-    "github.com/flipped-aurora/gin-vue-admin/server/utils"
+    "jnyz-app/server/utils"
     {{- end }}
 )
 

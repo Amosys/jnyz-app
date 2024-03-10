@@ -2,8 +2,8 @@ package utils
 
 import (
 	"fmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
+	"jnyz-app/server/global"
+	"jnyz-app/server/model/system"
 	"strconv"
 )
 

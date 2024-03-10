@@ -2,16 +2,17 @@ package system
 
 import (
 	"fmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/response"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	systemReq "github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/service"
-	"github.com/flipped-aurora/gin-vue-admin/server/utils"
+	"jnyz-app/server/global"
+	"jnyz-app/server/model/common/request"
+	"jnyz-app/server/model/common/response"
+	"jnyz-app/server/model/system"
+	systemReq "jnyz-app/server/model/system/request"
+	"jnyz-app/server/service"
+	"jnyz-app/server/utils"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"net/http"
 )
 
 type SysExportTemplateApi struct {

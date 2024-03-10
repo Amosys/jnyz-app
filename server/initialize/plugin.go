@@ -3,10 +3,11 @@ package initialize
 import (
 	"fmt"
 
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/middleware"
-	"github.com/flipped-aurora/gin-vue-admin/server/plugin/email"
-	"github.com/flipped-aurora/gin-vue-admin/server/utils/plugin"
+	"jnyz-app/server/global"
+	"jnyz-app/server/middleware"
+	"jnyz-app/server/plugin/email"
+	"jnyz-app/server/utils/plugin"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -4,9 +4,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
+	"jnyz-app/server/global"
+	"jnyz-app/server/model/common/request"
+	"jnyz-app/server/model/system"
+
 	"gorm.io/gorm"
 )
 
@@ -218,6 +219,7 @@ func (menuService *MenuService) GetMenuAuthority(info *request.GetAuthorityId) (
 }
 
 // UserAuthorityDefaultRouter 用户角色默认路由检查
+//
 //	Author [SliverHorn](https://github.com/SliverHorn)
 func (menuService *MenuService) UserAuthorityDefaultRouter(user *system.SysUser) {
 	var menuIds []string

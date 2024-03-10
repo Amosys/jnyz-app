@@ -1,8 +1,8 @@
 package request
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
+	"jnyz-app/server/model/common/request"
+	"jnyz-app/server/model/system"
 )
 
 type SysOperationRecordSearch struct {

@@ -1,12 +1,14 @@
 package internal
 
 import (
-	"gorm.io/gorm/schema"
 	"log"
 	"os"
 	"time"
 
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"gorm.io/gorm/schema"
+
+	"jnyz-app/server/global"
+
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )

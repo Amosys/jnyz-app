@@ -1,11 +1,12 @@
 package utils
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	systemReq "github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
+	"jnyz-app/server/global"
+	systemReq "jnyz-app/server/model/system/request"
+	"net"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid/v5"
-	"net"
 )
 
 func ClearToken(c *gin.Context) {

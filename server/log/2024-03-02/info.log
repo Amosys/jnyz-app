@@ -1,32 +1,32 @@
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 11:10:30.649	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 11:10:30.650	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 11:10:30.650	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 12:30:20.221	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_initdb.go:57	前往初始化数据库
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:08:19.201	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:08:19.202	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:08:19.203	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 13:08:19.203	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 15:39:13.012	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 15:39:13.014	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 15:39:13.016	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 15:39:13.016	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:02:27.794	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:02:27.798	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:02:27.799	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:02:27.799	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:13.603	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:25:17.559	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:25:17.560	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:25:17.561	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:25:17.561	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:27:53.911	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:27:53.912	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:27:53.913	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:27:53.914	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:19.730	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:19.731	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:19.731	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
-[github.com/flipped-aurora/gin-vue-admin/server]2024/03/02 - 16:28:19.732	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 11:10:30.649	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 11:10:30.650	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 11:10:30.650	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 12:30:20.221	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/api/v1/system/sys_initdb.go:57	前往初始化数据库
+[jnyz-app/server]2024/03/02 - 13:08:19.201	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 13:08:19.202	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 13:08:19.203	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 13:08:19.203	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 15:39:13.012	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 15:39:13.014	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 15:39:13.016	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 15:39:13.016	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 16:02:27.794	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 16:02:27.798	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 16:02:27.799	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 16:02:27.799	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 16:24:13.603	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 16:24:13.604	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 16:25:17.559	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 16:25:17.560	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 16:25:17.561	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 16:25:17.561	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 16:27:53.911	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 16:27:53.912	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 16:27:53.913	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 16:27:53.914	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/02 - 16:28:19.730	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/gorm.go:59	register table success
+[jnyz-app/server]2024/03/02 - 16:28:19.731	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:49	register swagger handler
+[jnyz-app/server]2024/03/02 - 16:28:19.731	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/initialize/router.go:85	router register success
+[jnyz-app/server]2024/03/02 - 16:28:19.732	[34minfo[0m	/home/amos/repo/GolangDev/JNYZ-server/core/server.go:41	server run success on 	{"address": ":9999"}

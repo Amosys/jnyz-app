@@ -1,7 +1,8 @@
 package system
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"jnyz-app/server/global"
+
 	"github.com/gofrs/uuid/v5"
 )
 

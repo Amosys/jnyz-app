@@ -1,9 +1,10 @@
 package initialize
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/config"
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/initialize/internal"
+	"jnyz-app/server/config"
+	"jnyz-app/server/global"
+	"jnyz-app/server/initialize/internal"
+
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 )

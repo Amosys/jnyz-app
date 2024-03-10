@@ -4,6 +4,7 @@
     :show-file-list="false"
     :on-success="handleSuccess"
     :multiple="false"
+    :headers="headers"
   >
     <el-button
       type="primary"
@@ -15,6 +16,7 @@
 
 <script setup>
 import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/pinia/modules/user'
 
 const baseUrl = import.meta.env.VITE_BASE_API
 
@@ -28,6 +30,12 @@ const props = defineProps({
 const emit = defineEmits(['on-success'])
 
 const url = `${baseUrl}/sysExportTemplate/importExcel?templateID=${props.templateId}`
+
+const userStore = useUserStore()
+const headers = {
+    'x-token': userStore.token,
+    'x-user-id': userStore.userInfo.ID,
+  }
 
 const handleSuccess = (res) => {
   if (res.code === 0) {

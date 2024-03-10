@@ -1,8 +1,8 @@
 package request
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
+	"jnyz-app/server/global"
+	"jnyz-app/server/model/system"
 )
 
 // Add menu authority info structure

@@ -196,14 +196,14 @@
           </el-form-item>
           <el-form-item
             label="用户角色"
-            prop="authorityId"
+            prop="authorityIds"
           >
             <el-cascader
               v-model="userInfo.authorityIds"
               style="width:100%"
               :options="authOptions"
               :show-all-levels="false"
-              :props="{ multiple:true,checkStrictly: true,label:'authorityName',value:'authorityId',disabled:'disabled',emitPath:false}"
+              :props="{ multiple:true,label:'authorityName',value:'authorityId',disabled:'disabled',emitPath:false}"
               :clearable="false"
             />
           </el-form-item>
@@ -280,6 +280,7 @@ import { setUserInfo, resetPassword } from '@/api/user.js'
 import { nextTick, ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import hash from '@/utils/hash';
+import { md5 } from 'js-md5';
 
 defineOptions({
   name: 'User',
@@ -404,7 +405,7 @@ const deleteUserFunc = async(row) => {
 
 // 弹窗相关
 const userInfo = ref({
-  username: '',
+  userName: '',
   password: '',
   nickName: '',
   headerImg: '',
@@ -431,15 +432,16 @@ const rules = ref({
   email: [
     { pattern: /^([0-9A-Za-z\-_.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g, message: '请输入正确的邮箱', trigger: 'blur' },
   ],
-  authorityId: [
+  authorityIds: [
     { required: true, message: '请选择用户角色', trigger: 'blur' }
   ]
 })
 const userForm = ref(null)
 const enterAddUserDialog = async() => {
   var registerReq = {
-    username: userInfo.value.username,
+    userName: userInfo.value.userName,
     password: userInfo.value.password,
+    phone: userInfo.value.phone,
     nickName: userInfo.value.nickName,
     headerImg: userInfo.value.headerImg,
     authorityId: userInfo.value.authorityId,
@@ -448,6 +450,7 @@ const enterAddUserDialog = async() => {
   }
   registerReq.password = md5(registerReq.password)
   registerReq.authorityId = registerReq.authorityIds[0]
+  console.log(userInfo.value)
   userForm.value.validate(async valid => {
     if (valid) {
       const req = {

@@ -1,10 +1,11 @@
 package internal
 
 import (
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"jnyz-app/server/global"
+	"time"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"time"
 )
 
 var Zap = new(_zap)

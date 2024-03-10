@@ -2,13 +2,14 @@ package system
 
 import (
 	"errors"
-	systemReq "github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
+	systemReq "jnyz-app/server/model/system/request"
 	"strconv"
 
-	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/response"
+	"jnyz-app/server/global"
+	"jnyz-app/server/model/common/request"
+	"jnyz-app/server/model/system"
+	"jnyz-app/server/model/system/response"
+
 	"gorm.io/gorm"
 )
 

@@ -220,7 +220,7 @@ const login = async() => {
   var formData = {
     username: loginFormData.username,
     phone: loginFormData.phone,
-    password: loginFormData.username,
+    password: loginFormData.password,
     captcha: loginFormData.captcha,
     captchaId: loginFormData.captchaId,
     openCaptcha: loginFormData.openCaptcha,

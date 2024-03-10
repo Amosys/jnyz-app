@@ -1,0 +1,12 @@
+[jnyz-app/server]2024/03/08 - 22:05:06.766	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:53	net.Listen error: listen tcp :9999: bind: address already in use
+[jnyz-app/server]2024/03/08 - 22:06:47.762	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[jnyz-app/server]2024/03/08 - 22:15:38.384	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[jnyz-app/server]2024/03/08 - 22:19:13.955	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[jnyz-app/server]2024/03/08 - 22:20:02.107	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[jnyz-app/server]2024/03/08 - 22:20:22.433	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "record not found"}
+[jnyz-app/server]2024/03/08 - 22:21:28.863	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "密码错误"}
+[jnyz-app/server]2024/03/08 - 22:21:58.637	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "密码错误"}
+[jnyz-app/server]2024/03/08 - 22:26:00.799	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_user.go:58	登陆失败! 用户不存在或者密码错误!	{"error": "密码错误"}
+[jnyz-app/server]2024/03/08 - 22:35:48.569	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/03/08 - 22:37:58.680	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/03/08 - 22:58:15.087	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:53	accept tcp [::]:9999: use of closed network connection
