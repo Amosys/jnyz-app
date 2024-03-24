@@ -1,6 +1,6 @@
 FROM golang:alpine as builder
 
-WORKDIR /go/src/jnyz-app/server
+WORKDIR /go/src/app
 COPY . .
 
 RUN go env -w GO111MODULE=on \
@@ -14,11 +14,11 @@ FROM alpine:latest
 
 LABEL MAINTAINER="SliverHorn@sliver_horn@qq.com"
 
-WORKDIR /go/src/jnyz-app/server
+WORKDIR /go/src/app
 
-COPY --from=0 /go/src/jnyz-app/server/server ./
-COPY --from=0 /go/src/jnyz-app/server/resource ./resource/
-COPY --from=0 /go/src/jnyz-app/server/config.docker.yaml ./
+COPY --from=0 /go/src/app/server ./
+COPY --from=0 /go/src/app/resource ./resource/
+COPY --from=0 /go/src/app/config.docker.yaml ./
 
 EXPOSE 8888
 ENTRYPOINT ./server -c config.docker.yaml

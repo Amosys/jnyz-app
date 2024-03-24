@@ -161,7 +161,15 @@ func (i *initApi) InitializeData(ctx context.Context) (context.Context, error) {
 		{ApiGroup: "表格模板", Method: "GET", Path: "/sysExportTemplate/exportExcel", Description: "导出Excel"},
 		{ApiGroup: "表格模板", Method: "GET", Path: "/sysExportTemplate/exportTemplate", Description: "下载模板"},
 		{ApiGroup: "表格模板", Method: "POST", Path: "/sysExportTemplate/importExcel", Description: "导入Excel"},
+
+		{ApiGroup: "云音响", Method: "POST", Path: "/CloudSpeaker/createAppCloudSpeaker", Description: "新建云音响"},
+		{ApiGroup: "云音响", Method: "DELETE", Path: "/CloudSpeaker/deleteAppCloudSpeaker", Description: "删除云音响"},
+		{ApiGroup: "云音响", Method: "DELETE", Path: "/CloudSpeaker/deleteAppCloudSpeakerByIds", Description: "批量删除云音响"},
+		{ApiGroup: "云音响", Method: "PUT", Path: "/CloudSpeaker/updateAppCloudSpeaker", Description: "更新云音响"},
+		{ApiGroup: "云音响", Method: "GET", Path: "/CloudSpeaker/findAppCloudSpeaker", Description: "根据ID获取云音响"},
+		{ApiGroup: "云音响", Method: "GET", Path: "/CloudSpeaker/getAppCloudSpeakerList", Description: "获取云音响列表"},
 	}
+
 	if err := db.Create(&entities).Error; err != nil {
 		return ctx, errors.Wrap(err, sysModel.SysApi{}.TableName()+"表数据初始化失败!")
 	}

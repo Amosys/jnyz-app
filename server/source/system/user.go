@@ -46,7 +46,6 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 	if !ok {
 		return ctx, system.ErrMissingDBContext
 	}
-	password := utils.BcryptHash("afdd0b4ad2ec172c586e2150770fbf9e")
 	adminPassword := utils.BcryptHash("afdd0b4ad2ec172c586e2150770fbf9e")
 
 	entities := []sysModel.SysUser{
@@ -56,19 +55,10 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 			Password:    adminPassword,
 			NickName:    "admin",
 			HeaderImg:   "https://qmplusimg.henrongyi.top/gva_header.jpg",
-			AuthorityId: 888,
-			Phone:       "17611111111",
+			AuthorityId: 100,
+			Phone:       "15556324021",
 			Email:       "333333333@qq.com",
 		},
-		{
-			UUID:        uuid.Must(uuid.NewV4()),
-			Username:    "a303176530",
-			Password:    password,
-			NickName:    "用户1",
-			HeaderImg:   "https:///qmplusimg.henrongyi.top/1572075907logo.png",
-			AuthorityId: 9528,
-			Phone:       "17611111111",
-			Email:       "333333333@qq.com"},
 	}
 	if err = db.Create(&entities).Error; err != nil {
 		return ctx, errors.Wrap(err, sysModel.SysUser{}.TableName()+"表数据初始化失败!")
@@ -79,9 +69,6 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 		return next, errors.Wrap(system.ErrMissingDependentContext, "创建 [用户-权限] 关联失败, 未找到权限表初始化数据")
 	}
 	if err = db.Model(&entities[0]).Association("Authorities").Replace(authorityEntities); err != nil {
-		return next, err
-	}
-	if err = db.Model(&entities[1]).Association("Authorities").Replace(authorityEntities[:1]); err != nil {
 		return next, err
 	}
 	return next, err

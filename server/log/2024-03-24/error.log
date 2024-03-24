@@ -1,0 +1,4 @@
+[jnyz-app/server]2024/03/24 - 12:05:41.403	[31merror[0m	/root/repo/jnyz-app/server/core/server.go:54	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/03/24 - 12:10:53.973	[31merror[0m	/root/repo/jnyz-app/server/core/server.go:54	accept tcp [::]:8888: use of closed network connection
+[jnyz-app/server]2024/03/24 - 12:11:13.916	[31merror[0m	/root/repo/jnyz-app/server/core/server.go:54	net.Listen error: listen tcp :8888: bind: address already in use
+[jnyz-app/server]2024/03/24 - 12:16:13.783	[31merror[0m	/root/repo/jnyz-app/server/core/server.go:54	accept tcp [::]:9999: use of closed network connection

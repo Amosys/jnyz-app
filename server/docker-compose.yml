@@ -9,7 +9,7 @@ services:
       - 8888:8888
     restart: always
     volumes:
-      - /root/repo/server/JNYZ/runtime/log:/go/src/app/log
+      - /var/log/jnyz-app:/go/src/app/log
     networks:
       - nginx-proxy
       - mysql
