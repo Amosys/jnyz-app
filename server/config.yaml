@@ -83,7 +83,7 @@ hua-wei-obs:
     access-key: you-access-key
     secret-key: you-secret-key
 jwt:
-    signing-key: 74f962c5-6698-4b29-ae79-5dcaf40409cf
+    signing-key: 858c8da8-093c-42d8-8d1b-cf1dad256003
     expires-time: 7d
     buffer-time: 1d
     issuer: qmPlus
@@ -122,9 +122,9 @@ mysql:
     prefix: ""
     port: "3306"
     config: charset=utf8mb4&parseTime=True&loc=Local
-    db-name: jnyz-app
+    db-name: test
     username: root
-    password: mali960927MALI
+    password: Aa123456
     path: 127.0.0.1
     engine: ""
     log-mode: error

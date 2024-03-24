@@ -1,0 +1,27 @@
+[jnyz-app/server]2024/03/13 - 21:01:09.872	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:01:09.873	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:01:09.874	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:02:02.591	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:02:02.591	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:02:02.593	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:02:22.034	[34minfo[0m	/home/amos/repo/jnyz-app/server/api/v1/system/sys_initdb.go:58	前往初始化数据库
+[jnyz-app/server]2024/03/13 - 21:13:34.396	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/03/13 - 21:13:34.397	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:13:34.399	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:13:34.399	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:16:15.169	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/03/13 - 21:16:15.170	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:16:15.171	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:16:15.171	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:17:37.179	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/03/13 - 21:17:37.180	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:17:37.181	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:17:37.181	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:20:38.175	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/03/13 - 21:20:38.177	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:20:38.178	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:20:38.178	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}
+[jnyz-app/server]2024/03/13 - 21:22:13.106	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/03/13 - 21:22:13.107	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:52	register swagger handler
+[jnyz-app/server]2024/03/13 - 21:22:13.109	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:89	router register success
+[jnyz-app/server]2024/03/13 - 21:22:13.109	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:42	server run success on 	{"address": ":9999"}

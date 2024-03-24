@@ -42,7 +42,7 @@ func (i *initAppCloudSpeaker) InitializeData(ctx context.Context) (context.Conte
 }
 
 func (i *initAppCloudSpeaker) DataInserted(ctx context.Context) bool {
-	db, ok := ctx.Value("db").(*gorm.DB)
+	_, ok := ctx.Value("db").(*gorm.DB)
 	if !ok {
 		return false
 	}
