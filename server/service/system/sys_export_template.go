@@ -236,7 +236,9 @@ func (sysExportTemplateService *SysExportTemplateService) ImportExcel(templateID
 			var item = make(map[string]interface{})
 			for ii, value := range row {
 				key := titleKeyMap[excelTitle[ii]]
-				item[key] = value
+				if len(key) != 0 {
+					item[key] = value
+				}
 			}
 			cErr := tx.Table(template.TableName).Create(&item).Error
 			if cErr != nil {

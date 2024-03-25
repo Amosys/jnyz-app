@@ -14,6 +14,7 @@ type Response struct {
 
 const (
 	ERROR   = 7
+	EXPIRE  = 8
 	SUCCESS = 0
 )
 
@@ -52,4 +53,8 @@ func FailWithMessage(message string, c *gin.Context) {
 
 func FailWithDetailed(data interface{}, message string, c *gin.Context) {
 	Result(ERROR, data, message, c)
+}
+
+func FailWithDetailedInExpire(data interface{}, message string, c *gin.Context) {
+	Result(EXPIRE, data, message, c)
 }
