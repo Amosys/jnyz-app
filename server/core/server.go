@@ -33,6 +33,7 @@ func RunWindowsServer() {
 
 	Router := initialize.Routers()
 	Router.Static("/form-generator", "./resource/page")
+	Router.Static("/static", "./resource/static")
 
 	address := fmt.Sprintf(":%d", global.GVA_CONFIG.System.Addr)
 	s := initServer(address, Router)
