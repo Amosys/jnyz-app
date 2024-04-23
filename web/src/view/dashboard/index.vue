@@ -1,5 +1,20 @@
 <template>
   <div class="page">
+    <el-row :gutter="24">
+      <el-col :sm="24" :md="12" :xl="6"  :style="{ marginTop: '12px'}">
+        <ChartCard title="存款" total="￥126,560">
+          <div>
+            <trend flag="up" style="margin-right: 16px;" term="较昨日" percentage="12">
+            </trend>
+            <trend flag="down" style="margin-right: 16px;" term="较上周" percentage="12">
+            </trend>
+            <trend flag="down" style="margin-right: 16px;" term="较年初" percentage="12">
+            </trend>
+          </div>
+          <template slot="footer">较年初<span>￥ 234.56</span></template>
+        </ChartCard>
+      </el-col>
+    </el-row>
     <div class="gva-card-box">
       <div class="gva-card gva-top-card">
         <div class="gva-top-card-left">
@@ -69,62 +84,12 @@
         >
       </div>
     </div>
-    <div class="gva-card-box">
-      <div class="gva-card quick-entrance">
-        <div class="gva-card-title">快捷入口</div>
-        <el-row :gutter="20">
-          <el-col
-            v-for="(card, key) in toolCards"
-            :key="key"
-            :span="4"
-            :xs="8"
-            class="quick-entrance-items"
-            @click="toTarget(card.name)"
-          >
-            <div class="quick-entrance-item">
-              <div
-                class="quick-entrance-item-icon"
-                :style="{ backgroundColor: card.bg }"
-              >
-                <el-icon>
-                  <component
-                    :is="card.icon"
-                    :style="{ color: card.color }"
-                  />
-                </el-icon>
-              </div>
-              <p>{{ card.label }}</p>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-    </div>
-    <div class="gva-card-box">
-      <div class="gva-card">
-        <div class="gva-card-title">数据统计</div>
-        <div class="p-4">
-          <el-row :gutter="20">
-            <el-col
-              :xs="24"
-              :sm="18"
-            >
-              <echarts-line />
-            </el-col>
-            <el-col
-              :xs="24"
-              :sm="6"
-            >
-              <dashboard-table />
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-import EchartsLine from '@/view/dashboard/dashboardCharts/echartsLine.vue'
+import ChartCard from '@/components/analysis/chartCard.vue'
+import Trend from '@/components/analysis/trend.vue'
 import DashboardTable from '@/view/dashboard/dashboardTable/dashboardTable.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
