@@ -162,7 +162,7 @@ func (b *BaseApi) Register(c *gin.Context) {
 			AuthorityId: v,
 		})
 	}
-	user := &system.SysUser{Username: r.Username, NickName: r.NickName, Password: r.Password, HeaderImg: r.HeaderImg, AuthorityId: r.AuthorityId, Authorities: authorities, Enable: r.Enable, Phone: r.Phone, Email: r.Email}
+	user := &system.SysUser{Username: r.Username, NickName: r.NickName, Password: r.Password, HeaderImg: r.HeaderImg, AuthorityId: r.AuthorityId, Authorities: authorities, Enable: r.Enable, Phone: r.Phone, Email: r.Email, InstitutionId: r.InstitutionId}
 	userReturn, err := userService.Register(*user)
 	if err != nil {
 		global.GVA_LOG.Error("注册失败!", zap.Error(err))
@@ -304,6 +304,37 @@ func (b *BaseApi) SetUserAuthorities(c *gin.Context) {
 	response.OkWithMessage("修改成功", c)
 }
 
+// SetUserInstitution
+// @Tags      SysUser
+// @Summary   更改用户机构
+// @Security  ApiKeyAuth
+// @accept    application/json
+// @Produce   application/json
+// @Param     data  body      systemReq.SetUserAuth          true  "用户UUID, 角色ID"
+// @Success   200   {object}  response.Response{msg=string}  "设置用户机构"
+// @Router    /user/setUserAuthority [post]
+func (b *BaseApi) SetUserInstitution(c *gin.Context) {
+	var sui systemReq.SetUserInstitution
+	err := c.ShouldBindJSON(&sui)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	if UserVerifyErr := utils.Verify(sui, utils.SetUserInstitutionVerify); UserVerifyErr != nil {
+		response.FailWithMessage(UserVerifyErr.Error(), c)
+		return
+	}
+	userID := utils.GetUserID(c)
+	err = userService.SetUserInstitution(userID, sui.InstitutionId)
+	if err != nil {
+		global.GVA_LOG.Error("修改失败!", zap.Error(err))
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+
+	response.OkWithMessage("修改成功", c)
+}
+
 // DeleteUser
 // @Tags      SysUser
 // @Summary   删除用户
@@ -369,16 +400,25 @@ func (b *BaseApi) SetUserInfo(c *gin.Context) {
 			return
 		}
 	}
+
+	err = userService.SetUserInstitution(user.ID, user.InstitutionId)
+	if err != nil {
+		global.GVA_LOG.Error("设置失败!", zap.Error(err))
+		response.FailWithMessage("设置失败", c)
+		return
+	}
+
 	err = userService.SetUserInfo(system.SysUser{
 		GVA_MODEL: global.GVA_MODEL{
 			ID: user.ID,
 		},
-		NickName:  user.NickName,
-		HeaderImg: user.HeaderImg,
-		Phone:     user.Phone,
-		Email:     user.Email,
-		SideMode:  user.SideMode,
-		Enable:    user.Enable,
+		NickName:      user.NickName,
+		HeaderImg:     user.HeaderImg,
+		Phone:         user.Phone,
+		Email:         user.Email,
+		SideMode:      user.SideMode,
+		Enable:        user.Enable,
+		InstitutionId: user.InstitutionId,
 	})
 	if err != nil {
 		global.GVA_LOG.Error("设置失败!", zap.Error(err))

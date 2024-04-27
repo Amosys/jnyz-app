@@ -63,6 +63,11 @@ func (i *initCasbin) InitializeData(ctx context.Context) (context.Context, error
 		{Ptype: "p", V0: "100", V1: "/authority/getAuthorityList", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/authority/setDataAuthority", V2: "POST"},
 
+		{Ptype: "p", V0: "100", V1: "/institution/createInstitution", V2: "POST"},
+		{Ptype: "p", V0: "100", V1: "/institution/deleteInstitution", V2: "POST"},
+		{Ptype: "p", V0: "100", V1: "/institution/updateInstitution", V2: "PUT"},
+		{Ptype: "p", V0: "100", V1: "/institution/getInstitutionList", V2: "POST"},
+
 		{Ptype: "p", V0: "100", V1: "/menu/getMenu", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/menu/getMenuList", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/menu/addBaseMenu", V2: "POST"},
@@ -82,6 +87,7 @@ func (i *initCasbin) InitializeData(ctx context.Context) (context.Context, error
 		{Ptype: "p", V0: "100", V1: "/user/setUserAuthority", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/user/setUserAuthorities", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/user/resetPassword", V2: "POST"},
+		{Ptype: "p", V0: "100", V1: "/user/setUserInstitution", V2: "PUT"},
 
 		{Ptype: "p", V0: "100", V1: "/fileUploadAndDownload/findFile", V2: "GET"},
 		{Ptype: "p", V0: "100", V1: "/fileUploadAndDownload/breakpointContinueFinish", V2: "POST"},

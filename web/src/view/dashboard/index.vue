@@ -11,7 +11,8 @@
             <trend flag="down" style="margin-right: 16px;" term="较年初" percentage="12">
             </trend>
           </div>
-          <template slot="footer">较年初<span>￥ 234.56</span></template>
+          <template slot="footer">较年初
+            <span>￥ 234.56</span></template>
         </ChartCard>
       </el-col>
     </el-row>

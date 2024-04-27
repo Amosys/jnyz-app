@@ -50,14 +50,15 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 
 	entities := []sysModel.SysUser{
 		{
-			UUID:        uuid.Must(uuid.NewV4()),
-			Username:    "admin",
-			Password:    adminPassword,
-			NickName:    "admin",
-			HeaderImg:   "https://qmplusimg.henrongyi.top/gva_header.jpg",
-			AuthorityId: 100,
-			Phone:       "15556324021",
-			Email:       "333333333@qq.com",
+			UUID:          uuid.Must(uuid.NewV4()),
+			Username:      "admin",
+			Password:      adminPassword,
+			NickName:      "admin",
+			HeaderImg:     "https://qmplusimg.henrongyi.top/gva_header.jpg",
+			AuthorityId:   100,
+			Phone:         "15556324021",
+			Email:         "333333333@qq.com",
+			InstitutionId: 3414696002,
 		},
 	}
 	if err = db.Create(&entities).Error; err != nil {

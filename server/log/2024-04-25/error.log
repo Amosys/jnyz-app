@@ -1,0 +1,4 @@
+[jnyz-app/server]2024/04/25 - 22:02:59.371	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/04/25 - 22:05:27.846	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/04/25 - 22:08:57.028	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/04/25 - 22:09:45.708	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection

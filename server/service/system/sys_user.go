@@ -143,6 +143,17 @@ func (userService *UserService) SetUserAuthorities(id uint, authorityIds []uint)
 }
 
 //@author: [piexlmax](https://github.com/piexlmax)
+//@function: SetUserInstitution
+//@description: 设置一个用户的所属机构
+//@param: uuid uuid.UUID, authorityId string
+//@return: err error
+
+func (userService *UserService) SetUserInstitution(id uint, institutionId uint) (err error) {
+	err = global.GVA_DB.Where("id = ?", id).First(&system.SysUser{}).Update("institution_id", institutionId).Error
+	return err
+}
+
+//@author: [piexlmax](https://github.com/piexlmax)
 //@function: DeleteUser
 //@description: 删除用户
 //@param: id float64

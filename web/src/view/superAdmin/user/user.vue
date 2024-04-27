@@ -75,6 +75,23 @@
         </el-table-column>
         <el-table-column
           align="left"
+          label="所属机构"
+          min-width="200"
+        >
+          <template #default="scope">
+            <el-cascader
+              v-model="scope.row.institutionId"
+              :options="instOptions"
+              :show-all-levels="false"
+              collapse-tags
+              :props="{ label:'institutionName',value:'institutionId',disabled:'disabled',emitPath:false}"
+              :clearable="false"
+              @visible-change="(flag)=>{changeInstitution(scope.row,flag,0)}"
+            />
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="left"
           label="启用"
           min-width="150"
         >
@@ -208,6 +225,19 @@
             />
           </el-form-item>
           <el-form-item
+            label="用户所属机构"
+            prop="institutionId"
+          >
+            <el-cascader
+              v-model="userInfo.institutionId"
+              style="width:100%"
+              :options="instOptions"
+              :show-all-levels="false"
+              :props="{ label:'institutionName',value:'institutionId',disabled:'disabled',emitPath:false}"
+              :clearable="false"
+            />
+          </el-form-item>
+          <el-form-item
             label="启用"
             prop="disabled"
           >
@@ -268,10 +298,12 @@ import {
   getUserList,
   setUserAuthorities,
   register,
-  deleteUser
+  deleteUser,
+  setUserInstitution
 } from '@/api/user'
 
 import { getAuthorityList } from '@/api/authority'
+import { getInstitutionList } from '@/api/institution'
 import CustomPic from '@/components/customPic/index.vue'
 import ChooseImg from '@/components/chooseImg/index.vue'
 import WarningBar from '@/components/warningBar/warningBar.vue'
@@ -308,6 +340,27 @@ const setAuthorityOptions = (AuthorityData, optionsData) => {
           }
         })
 }
+const setInstitutionOptions = (InstitutionData, optionsData) => {
+  InstitutionData &&
+  InstitutionData.forEach(item => {
+    if (item.children && item.children.length) {
+      const option = {
+        institutionId: item.institutionId,
+        institutionName: item.institutionName,
+        children: []
+      }
+      setInstitutionOptions(item.children, option.children)
+      optionsData.push(option)
+    } else {
+      const option = {
+        institutionId: item.institutionId,
+        institutionName: item.institutionName
+      }
+      optionsData.push(option)
+    }
+  })
+}
+
 
 const page = ref(1)
 const total = ref(0)
@@ -341,8 +394,9 @@ watch(() => tableData.value, () => {
 
 const initPage = async() => {
   getTableData()
-  const res = await getAuthorityList({ page: 1, pageSize: 999 })
-  setOptions(res.data.list)
+  const res1 = await getAuthorityList({ page: 1, pageSize: 999 })
+  const res2 = await getInstitutionList({ page: 1, pageSize: 999 })
+  setOptions(res1.data.list, res2.data.list)
 }
 
 initPage()
@@ -389,9 +443,12 @@ const openHeaderChange = () => {
 }
 
 const authOptions = ref([])
-const setOptions = (authData) => {
+const instOptions = ref([])
+const setOptions = (authData, instData) => {
   authOptions.value = []
+  instOptions.value = []
   setAuthorityOptions(authData, authOptions.value)
+  setInstitutionOptions(instData, instOptions.value)
 }
 
 const deleteUserFunc = async(row) => {
@@ -412,6 +469,7 @@ const userInfo = ref({
   authorityId: '',
   authorityIds: [],
   enable: 1,
+  institutionId: '',
 })
 
 const rules = ref({
@@ -434,6 +492,9 @@ const rules = ref({
   ],
   authorityIds: [
     { required: true, message: '请选择用户角色', trigger: 'blur' }
+  ],
+  institutionId: [
+    { required: true, message: '请选择用户所属机构', trigger: 'blur' },
   ]
 })
 const userForm = ref(null)
@@ -447,6 +508,7 @@ const enterAddUserDialog = async() => {
     authorityId: userInfo.value.authorityId,
     authorityIds: userInfo.value.authorityIds,
     enable: userInfo.value.enable,
+    institutionId: userInfo.value.institutionId,
   }
   registerReq.password = md5(registerReq.password)
   registerReq.authorityId = registerReq.authorityIds[0]
@@ -513,6 +575,22 @@ const changeAuthority = async(row, flag, removeAuth) => {
     } else {
       row.authorityIds = [removeAuth, ...row.authorityIds]
     }
+  }
+}
+
+const tempInst = {}
+const changeInstitution = async(row, flag) => {
+  if (flag) {
+    return
+  }
+  await nextTick()
+  const res = await setUserInstitution({
+    institutionId: row.institutionId,
+  })
+  if (res.code === 0) {
+    ElMessage({ type: 'success', message: '机构设置成功' })
+  } else {
+    ElMessage({ type: 'error', message: '机构设置失败' })
   }
 }
 

@@ -164,3 +164,19 @@ export const resetPassword = (data) => {
     data: data
   })
 }
+
+// @Tags User
+// @Summary 设置用户所属机构
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data body api.setUserInstitution true "设置用户所属机构"
+// @Success 200 {string} json "{"success":true,"data":{},"msg":"修改成功"}"
+// @Router /user/setUserInstitution [post]
+export const setUserInstitution = (data) => {
+  return service({
+    url: '/user/setUserInstitution',
+    method: 'put',
+    data: data
+  })
+}
