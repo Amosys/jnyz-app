@@ -33,7 +33,7 @@ func (api *DataDepositTop50Api) CreateDepositTop50(c *gin.Context) {
 
 func (api *DataDepositTop50Api) GetDepositTop50(c *gin.Context) {
 	var pageInfo dataReq.DataDALBankSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

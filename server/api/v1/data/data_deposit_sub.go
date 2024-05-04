@@ -1,7 +1,6 @@
 package data
 
 import (
-	"fmt"
 	"jnyz-app/server/global"
 	"jnyz-app/server/model/common/response"
 	"jnyz-app/server/model/data"
@@ -35,13 +34,11 @@ func (api *DataDepositSubApi) CreateDepositSub(c *gin.Context) {
 func (api *DataDepositSubApi) FindDepositSub(c *gin.Context) {
 	var DepositGet dataReq.DataDALBranchGet
 	var reDepositSub data.DataDepositSub
-	err := c.ShouldBindJSON(&DepositGet)
+	err := c.ShouldBindQuery(&DepositGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
 	}
-
-	fmt.Println(utils.GetUserInfo(c))
 	if err := DataDALBranchService.GetDALBranch(DepositGet.Branch, DepositGet.Date, &reDepositSub); err != nil {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
@@ -52,7 +49,7 @@ func (api *DataDepositSubApi) FindDepositSub(c *gin.Context) {
 
 func (api *DataDepositSubApi) GetDepositSub(c *gin.Context) {
 	var pageInfo dataReq.DataDALBranchSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

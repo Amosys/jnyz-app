@@ -35,7 +35,7 @@ func (api *DataLoanDetailCorpApi) CreateLoanDetailCorp(c *gin.Context) {
 func (api *DataLoanDetailCorpApi) FindLoanDetailCorp(c *gin.Context) {
 	var LoanGet dataReq.DataDALBranchGet
 	var reLoanDetailCorp data.DataLoanDetailCorp
-	err := c.ShouldBindJSON(&LoanGet)
+	err := c.ShouldBindQuery(&LoanGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataLoanDetailCorpApi) FindLoanDetailCorp(c *gin.Context) {
 
 func (api *DataLoanDetailCorpApi) GetLoanDetailCorp(c *gin.Context) {
 	var pageInfo dataReq.DataDALBranchSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

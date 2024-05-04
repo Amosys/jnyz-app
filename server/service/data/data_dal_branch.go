@@ -18,7 +18,12 @@ func (DALBranchService *DataDALBranchService) CreateDALBranch(value interface{})
 // GetDataDALBranch 根据Branch获取数据记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (DALBranchService *DataDALBranchService) GetDALBranch(branch uint, date uint, tp interface{}) (err error) {
-	err = global.GVA_DB.Model(tp).Where("BRANCH = ?", branch).Where("DT = ?", date).First(&tp).Error
+	db := global.GVA_DB.Model(tp)
+	db = db.Where("BRANCH = ?", branch)
+	if date != 0 {
+		db = db.Where("DT = ?", date)
+	}
+	err = db.Order("id desc").First(&tp).Error
 	return
 }
 

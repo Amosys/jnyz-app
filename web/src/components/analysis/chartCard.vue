@@ -13,7 +13,7 @@
         </div>
         <div class="total">
             <slot name="total">
-            <span>{{ typeof total === 'function' && total() || total }}</span>
+            <span>{{ typeof total === 'function' && total() || total }}元</span>
             </slot>
         </div>
         </div>

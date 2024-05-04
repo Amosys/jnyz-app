@@ -1,14 +1,12 @@
 <template>
   <div class="page">
     <el-row :gutter="24">
-      <el-col :sm="24" :md="12" :xl="6"  :style="{ marginTop: '12px'}">
-        <ChartCard title="存款" total="￥126,560">
+      <el-col v-for="card in toolCards" :sm="24" :md="8" :xl="8"  :style="{ marginTop: '12px'}">
+        <ChartCard :title=card.title :total=card.total>
           <div>
-            <trend flag="up" style="margin-right: 16px;" term="较昨日" percentage="12">
+            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d>
             </trend>
-            <trend flag="down" style="margin-right: 16px;" term="较上周" percentage="12">
-            </trend>
-            <trend flag="down" style="margin-right: 16px;" term="较年初" percentage="12">
+            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by>
             </trend>
           </div>
           <template slot="footer">较年初
@@ -16,139 +14,54 @@
         </ChartCard>
       </el-col>
     </el-row>
-    <div class="gva-card-box">
-      <div class="gva-card gva-top-card">
-        <div class="gva-top-card-left">
-          <div class="gva-top-card-left-title">早安，管理员，请开始一天的工作吧</div>
-          <div class="gva-top-card-left-dot">{{ weatherInfo }}</div>
-          <el-row class="my-8 w-[500px]">
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <sort />
-                </el-icon>
-                今日流量 (1231231)
-              </div>
-            </el-col>
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <avatar />
-                </el-icon>
-                总用户数 (24001)
-              </div>
-            </el-col>
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <comment />
-                </el-icon>
-                好评率 (99%)
-              </div>
-            </el-col>
-          </el-row>
-          <div>
-            <div class="gva-top-card-left-item">
-              使用教学：
-              <a
-                style="color:#409EFF"
-                target="view_window"
-                href="https://www.bilibili.com/video/BV1Rg411u7xH/"
-              >https://www.bilibili.com/video/BV1Rg411u7xH</a>
-            </div>
-            <div class="gva-top-card-left-item">
-              插件仓库：
-              <a
-                style="color:#409EFF"
-                target="view_window"
-                href="https://plugin.gin-vue-admin.com/#/layout/home"
-              >https://plugin.gin-vue-admin.com</a>
-            </div>
-          </div>
-        </div>
-        <img
-          src="@/assets/dashboard.png"
-          class="gva-top-card-right"
-          alt
-        >
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
 import ChartCard from '@/components/analysis/chartCard.vue'
 import Trend from '@/components/analysis/trend.vue'
-import DashboardTable from '@/view/dashboard/dashboardTable/dashboardTable.vue'
+import { useUserStore } from '@/pinia/modules/user'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useWeatherInfo } from '@/view/dashboard/weather.js'
+import {
+  createDALData,
+  findDALData,
+  getDALDataList,
+} from '@/api/dataDAL'
 
-defineOptions({
-  name: 'Dashboard'
-})
+const userStore = useUserStore()
+const toolCards = ref([])
 
-const weatherInfo = useWeatherInfo()
-
-const toolCards = ref([
-  {
-    label: '用户管理',
-    icon: 'monitor',
-    name: 'user',
-    color: '#ff9c6e',
-    bg: 'rgba(255, 156, 110,.3)'
-  },
-  {
-    label: '角色管理',
-    icon: 'setting',
-    name: 'authority',
-    color: '#69c0ff',
-    bg: 'rgba(105, 192, 255,.3)'
-  },
-  {
-    label: '菜单管理',
-    icon: 'menu',
-    name: 'menu',
-    color: '#b37feb',
-    bg: 'rgba(179, 127, 235,.3)'
-  },
-  {
-    label: '代码生成器',
-    icon: 'cpu',
-    name: 'autoCode',
-    color: '#ffd666',
-    bg: 'rgba(255, 214, 102,.3)'
-  },
-  {
-    label: '表单生成器',
-    icon: 'document-checked',
-    name: 'formCreate',
-    color: '#ff85c0',
-    bg: 'rgba(255, 133, 192,.3)'
-  },
-  {
-    label: '关于我们',
-    icon: 'user',
-    name: 'about',
-    color: '#5cdbd3',
-    bg: 'rgba(92, 219, 211,.3)'
+// 查询
+const getData = async() => {
+  //获取存款数据
+  var res = await findDALData("depositSub", {branch: userStore.userInfo.institutionId})
+  if (res.code == 0){
+    const deposit = res.data.reDepositSub
+    toolCards.value.push({
+      title: "各项存款",
+      total: deposit.DBAL,
+      c2d: deposit.DBAL_C2D,
+      c2by: deposit.DBAL_C2BY,
+      c2byp: deposit.DBAL_INCP_C2BY,
+    })
   }
-])
+  //获取贷款款数据
+  res = await findDALData("loanSub", {branch: userStore.userInfo.institutionId})
+  if (res.code == 0){
+    const loan = res.data.reLoanSub
+    toolCards.value.push({
+      title: "各项贷款",
+      total: loan.LBAL,
+      c2d: loan.LBAL_C2D,
+      c2by: loan.LBAL_C2BY,
+      c2byp: loan.LBAL_INCP_C2BY,
+    })
+  }
+}
+getData()
 
 const router = useRouter()
-
 const toTarget = (name) => {
   router.push({ name })
 }

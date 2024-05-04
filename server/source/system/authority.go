@@ -46,6 +46,22 @@ func (i *initAuthority) InitializeData(ctx context.Context) (context.Context, er
 	}
 	entities := []sysModel.SysAuthority{
 		{AuthorityId: 100, AuthorityName: "管理员", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
+		{AuthorityId: 101, AuthorityName: "总行", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
+		{AuthorityId: 1010, AuthorityName: "董事长", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1011, AuthorityName: "行长", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1012, AuthorityName: "副行长", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1013, AuthorityName: "理事长", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1014, AuthorityName: "监事长", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1015, AuthorityName: "部门经理", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1016, AuthorityName: "部门副经理", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 1017, AuthorityName: "办事员", ParentId: utils.Pointer[uint](101), DefaultRouter: "dashboard"},
+		{AuthorityId: 102, AuthorityName: "支行", ParentId: utils.Pointer[uint](0), DefaultRouter: "dashboard"},
+		{AuthorityId: 1020, AuthorityName: "行长", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
+		{AuthorityId: 1021, AuthorityName: "副行长", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
+		{AuthorityId: 1022, AuthorityName: "客户经理", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
+		{AuthorityId: 1023, AuthorityName: "会计主管", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
+		{AuthorityId: 1024, AuthorityName: "综合柜员", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
+		{AuthorityId: 1025, AuthorityName: "大堂经理", ParentId: utils.Pointer[uint](102), DefaultRouter: "dashboard"},
 	}
 
 	if err := db.Create(&entities).Error; err != nil {
@@ -69,7 +85,7 @@ func (i *initAuthority) DataInserted(ctx context.Context) bool {
 	if !ok {
 		return false
 	}
-	if errors.Is(db.Where("authority_id = ?", "8881").
+	if errors.Is(db.Where("authority_id = ?", "100").
 		First(&sysModel.SysAuthority{}).Error, gorm.ErrRecordNotFound) { // 判断是否存在数据
 		return false
 	}

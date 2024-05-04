@@ -35,7 +35,7 @@ func (api *DataLoanSubApi) CreateLoanSub(c *gin.Context) {
 func (api *DataLoanSubApi) FindLoanSub(c *gin.Context) {
 	var DepositGet dataReq.DataDALBranchGet
 	var reLoanSub data.DataLoanSub
-	err := c.ShouldBindJSON(&DepositGet)
+	err := c.ShouldBindQuery(&DepositGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataLoanSubApi) FindLoanSub(c *gin.Context) {
 
 func (api *DataLoanSubApi) GetLoanSub(c *gin.Context) {
 	var pageInfo dataReq.DataDALBranchSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

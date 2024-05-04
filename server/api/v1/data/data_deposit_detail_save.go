@@ -35,7 +35,7 @@ func (api *DataDepositDetailSaveApi) CreateDepositDetailSave(c *gin.Context) {
 func (api *DataDepositDetailSaveApi) FindDepositDetailSave(c *gin.Context) {
 	var DepositGet dataReq.DataDALBranchGet
 	var reDepositDetailSave data.DataDepositDetailSave
-	err := c.ShouldBindJSON(&DepositGet)
+	err := c.ShouldBindQuery(&DepositGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataDepositDetailSaveApi) FindDepositDetailSave(c *gin.Context) {
 
 func (api *DataDepositDetailSaveApi) GetDepositDetailSave(c *gin.Context) {
 	var pageInfo dataReq.DataDALBranchSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

@@ -35,7 +35,7 @@ func (api *DataDepositBankApi) CreateDepositBank(c *gin.Context) {
 func (api *DataDepositBankApi) FindDepositBank(c *gin.Context) {
 	var DepositGet dataReq.DataDALBankGet
 	var reDepositBank data.DataDepositBank
-	err := c.ShouldBindJSON(&DepositGet)
+	err := c.ShouldBindQuery(&DepositGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataDepositBankApi) FindDepositBank(c *gin.Context) {
 
 func (api *DataDepositBankApi) GetDepositBank(c *gin.Context) {
 	var pageInfo dataReq.DataDALBankSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

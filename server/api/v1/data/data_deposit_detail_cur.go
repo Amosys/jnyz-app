@@ -35,7 +35,7 @@ func (api *DataDepositDetailCurApi) CreateDepositDetailCur(c *gin.Context) {
 func (api *DataDepositDetailCurApi) FindDepositDetailCur(c *gin.Context) {
 	var DepositGet dataReq.DataDALBranchGet
 	var reDepositDetailCur data.DataDepositDetailCur
-	err := c.ShouldBindJSON(&DepositGet)
+	err := c.ShouldBindQuery(&DepositGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataDepositDetailCurApi) FindDepositDetailCur(c *gin.Context) {
 
 func (api *DataDepositDetailCurApi) GetDepositDetailCur(c *gin.Context) {
 	var pageInfo dataReq.DataDALBranchSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

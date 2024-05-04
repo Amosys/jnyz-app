@@ -35,7 +35,7 @@ func (api *DataLoanBankApi) CreateLoanBank(c *gin.Context) {
 func (api *DataLoanBankApi) FindLoanBank(c *gin.Context) {
 	var LoanGet dataReq.DataDALBankGet
 	var reLoanBank data.DataLoanBank
-	err := c.ShouldBindJSON(&LoanGet)
+	err := c.ShouldBindQuery(&LoanGet)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return
@@ -52,7 +52,7 @@ func (api *DataLoanBankApi) FindLoanBank(c *gin.Context) {
 
 func (api *DataLoanBankApi) GetLoanBank(c *gin.Context) {
 	var pageInfo dataReq.DataDALBankSearch
-	err := c.ShouldBindJSON(&pageInfo)
+	err := c.ShouldBindQuery(&pageInfo)
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 		return

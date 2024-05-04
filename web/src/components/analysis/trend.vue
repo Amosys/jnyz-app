@@ -1,7 +1,8 @@
 <template>
     <div class="chart-trend">
       {{ term }}
-      <span>{{ rate }}%</span>
+      <span v-if="isPer">{{ percentage }}%</span>
+      <span v-if="!isPer">{{ value }}元</span>
       <span :class="['trend-icon', flag]">
         <el-icon>
             <component :is="'caret' + trend" />
@@ -19,25 +20,45 @@
         default: '',
         required: true
       },
-      percentage: {
-        type: String,
-        default: ''
+      isPer: {
+        type: Boolean,
+        default: true,
+        required: true
       },
-      flag: {
-        type: String,
-        default: null
+      percentage: {
+        type: Number,
+        default: 0
+      },
+      value: {
+        type: Number,
+        default: 0
       },
     },
     data () {
+      var f = ''
+      if (this.isPer){
+        f = this.percentage >= 0 ? 'up' : 'down'
+      }
+      else {
+        f = this.value >= 0 ? 'up' : 'down'
+      }
       return {
-        trend: this.flag == 'up' ? 'Top' : 'Bottom',
-        rate: this.percentage
+        trend: f == 'up' ? "Top" : "Bottom",
+        flag: f
       }
     },
     created () {
-
-      this.trend = this.flag == 'up' ? 'Top' : 'Bottom',
-      this.rate = this.percentage
+      var f = ''
+      if (this.isPer){
+        f = this.percentage >= 0 ? 'up' : 'down'
+      }
+      else {
+        f = this.value >= 0 ? 'up' : 'down'
+      }
+      return {
+        trend: f == 'up' ? "Top" : "Bottom",
+        flag: f
+      }
     }
   }
   </script>
