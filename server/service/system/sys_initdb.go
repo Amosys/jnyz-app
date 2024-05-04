@@ -25,6 +25,7 @@ const (
 const (
 	InitOrderSystem   = 10
 	InitOrderInternal = 1000
+	InitOrderData     = 5000
 	InitOrderExternal = 100000
 )
 

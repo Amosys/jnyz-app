@@ -33,6 +33,7 @@ func Routers() *gin.Engine {
 	systemRouter := router.RouterGroupApp.System
 	exampleRouter := router.RouterGroupApp.Example
 	appRouter := router.RouterGroupApp.App
+	dataRouter := router.RouterGroupApp.Data
 	// 如果想要不使用nginx代理前端网页，可以修改 web/.env.production 下的
 	// VUE_APP_BASE_API = /
 	// VUE_APP_BASE_PATH = http://localhost
@@ -85,6 +86,9 @@ func Routers() *gin.Engine {
 		exampleRouter.InitFileUploadAndDownloadRouter(PrivateGroup) // 文件上传下载功能路由
 
 		appRouter.InitAppCloudSpeakerRouter(PrivateGroup)
+
+		dataRouter.InitDataDALBranchRouter(PrivateGroup)
+		dataRouter.InitDataDALBankRouter(PrivateGroup)
 	}
 
 	global.GVA_LOG.Info("router register success")

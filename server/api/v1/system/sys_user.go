@@ -80,11 +80,12 @@ func (b *BaseApi) Login(c *gin.Context) {
 func (b *BaseApi) TokenNext(c *gin.Context, user system.SysUser) {
 	j := &utils.JWT{SigningKey: []byte(global.GVA_CONFIG.JWT.SigningKey)} // 唯一签名
 	claims := j.CreateClaims(systemReq.BaseClaims{
-		UUID:        user.UUID,
-		ID:          user.ID,
-		NickName:    user.NickName,
-		Username:    user.Username,
-		AuthorityId: user.AuthorityId,
+		UUID:          user.UUID,
+		ID:            user.ID,
+		NickName:      user.NickName,
+		Username:      user.Username,
+		AuthorityId:   user.AuthorityId,
+		InstitutionId: user.InstitutionId,
 	})
 	token, err := j.CreateToken(claims)
 	if err != nil {

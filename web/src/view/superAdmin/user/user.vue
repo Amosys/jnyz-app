@@ -462,6 +462,7 @@ const deleteUserFunc = async(row) => {
 
 // 弹窗相关
 const userInfo = ref({
+  ID: 0,
   userName: '',
   password: '',
   nickName: '',
@@ -512,7 +513,6 @@ const enterAddUserDialog = async() => {
   }
   registerReq.password = md5(registerReq.password)
   registerReq.authorityId = registerReq.authorityIds[0]
-  console.log(userInfo.value)
   userForm.value.validate(async valid => {
     if (valid) {
       const req = {
@@ -527,6 +527,8 @@ const enterAddUserDialog = async() => {
         }
       }
       if (dialogFlag.value === 'edit') {
+        req.ID = userInfo.value.ID
+        console.log(req)
         const res = await setUserInfo(req)
         if (res.code === 0) {
           ElMessage({ type: 'success', message: '编辑成功' })
@@ -549,6 +551,17 @@ const closeAddUserDialog = () => {
 const dialogFlag = ref('add')
 
 const addUser = () => {
+  userInfo.value = {
+    ID: 0,
+    userName: '',
+    password: '',
+    nickName: '',
+    headerImg: '',
+    authorityId: '',
+    authorityIds: [],
+    enable: 1,
+    institutionId: '',
+  }
   dialogFlag.value = 'add'
   addUserDialog.value = true
 }

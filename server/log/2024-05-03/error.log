@@ -1,0 +1,39 @@
+[jnyz-app/server]2024/05/03 - 15:17:16.467	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 15:34:27.669	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 15:53:29.114	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 15:58:59.050	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:13:16.790	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:13:29.800	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:15:56.859	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:23:16.695	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:24:12.704	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:25:24.294	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:28:22.547	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:28:55.354	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:30:00.943	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:30:16.569	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:31:43.888	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:32:49.098	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:34:13.987	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:34:39.121	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 16:34:49.178	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 19:46:15.231	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 19:47:30.837	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 19:49:31.568	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 21:27:31.662	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 21:27:35.851	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 21:28:19.313	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 21:29:16.291	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_sub.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:35:15.818	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:39:46.871	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/03 - 21:39:53.350	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_cur.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:41:03.205	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_save.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:42:21.383	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_sub.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:43:51.039	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:44:05.089	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:47:30.005	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_detail_pers.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:48:42.041	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_bank.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:54:17.056	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_trands.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 21:56:12.271	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_bank.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 22:02:04.868	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_loan_trands.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/03 - 22:10:30.831	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection

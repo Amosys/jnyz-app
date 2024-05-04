@@ -114,3 +114,16 @@ func GetUserName(c *gin.Context) string {
 		return waitUse.Username
 	}
 }
+
+func GetUserInstitution(c *gin.Context) string {
+	if claims, exists := c.Get("claims"); !exists {
+		if cl, err := GetClaims(c); err != nil {
+			return ""
+		} else {
+			return cl.Username
+		}
+	} else {
+		waitUse := claims.(*systemReq.CustomClaims)
+		return waitUse.Username
+	}
+}

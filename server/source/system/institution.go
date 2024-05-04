@@ -45,7 +45,8 @@ func (i *initInstitution) InitializeData(ctx context.Context) (context.Context, 
 		return ctx, system.ErrMissingDBContext
 	}
 	entities := []sysModel.SysInstitution{
-		{InstitutionId: 1, InstitutionName: "总行", ParentId: utils.Pointer[uint](0)},
+		{InstitutionId: 3414696094, InstitutionName: "泾县农村商业银行", ParentId: utils.Pointer[uint](0)},
+		{InstitutionId: 3414696001, InstitutionName: "总行", ParentId: utils.Pointer[uint](3414696094)},
 	}
 
 	if err := db.Create(&entities).Error; err != nil {
