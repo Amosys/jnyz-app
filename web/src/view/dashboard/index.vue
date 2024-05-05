@@ -14,12 +14,46 @@
         </ChartCard>
       </el-col>
     </el-row>
+    <el-row :gutter="24">
+      <el-col :xs="24" :sm="24" :xl="24">
+        <div class="gva-card-box">
+          <div class="gva-card">
+            <el-tabs v-model="activeName" type="card">
+              <span v-for="detail in detailData" >
+                <el-tab-pane :label=detail.label :name=detail.name>
+                  {{ detail.label }}
+                  <ChartLine :detail=detail.detail />
+                </el-tab-pane>
+              </span>
+            </el-tabs>  
+            <div class="date-picker">
+              <el-date-picker
+                v-model="selDate"
+                type="daterange"
+                align="right"
+                unlink-panels
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                :append-to-body=false
+                :editable=false
+                :disabled-date=disabledDate
+                @change="datePickerChange"
+                value-format="YYYYMMDD">
+              </el-date-picker>
+            </div>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script setup>
-import ChartCard from '@/components/analysis/chartCard.vue'
-import Trend from '@/components/analysis/trend.vue'
+import ChartCard from '@/view/dashboard/analysis/chartCard.vue'
+import Trend from '@/view/dashboard/analysis/trend.vue'
+import ChartLine from '@/view/dashboard/analysis/chartLine.vue'
+import { formatTimeToStr } from '@/utils/date'
 import { useUserStore } from '@/pinia/modules/user'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -31,10 +65,46 @@ import {
 
 const userStore = useUserStore()
 const toolCards = ref([])
+const detailData = ref([
+  {
+    label: '存款',
+    name: 'deposit',
+    detail: {
+      dayCount: 0,
+      seriesCount: 0,
+      lable: [],
+      color: [],
+      data: []
+    }
+  },
+  {
+    label: '贷款',
+    name: 'loan',
+    detail: {
+      dayCount: 0,
+      seriesCount: 0,
+      lable: [],
+      color: [],
+      data: []
+    }
+  }
+])
+const activeName = ref('存款')
+const dalData = ref({})
+const selDate = ref([formatTimeToStr(new Date(Date.now() - 8 * 8.64e7), "yyyyMMdd"),
+   formatTimeToStr(new Date(Date.now() - 8.64e7), "yyyyMMdd")])
+const disabledDate =  (time) => {
+  return time.getTime() >= Date.now() - 8.64e7
+}
+
+const datePickerChange = (date) =>{
+  console.log(date)
+  getDetailData(Number(date[0]), Number(date[1]))
+}
 
 // 查询
 const getData = async() => {
-  //获取存款数据
+  //各项存款
   var res = await findDALData("depositSub", {branch: userStore.userInfo.institutionId})
   if (res.code == 0){
     const deposit = res.data.reDepositSub
@@ -46,7 +116,7 @@ const getData = async() => {
       c2byp: deposit.DBAL_INCP_C2BY,
     })
   }
-  //获取贷款款数据
+  //获取各项贷款款数据
   res = await findDALData("loanSub", {branch: userStore.userInfo.institutionId})
   if (res.code == 0){
     const loan = res.data.reLoanSub
@@ -59,7 +129,71 @@ const getData = async() => {
     })
   }
 }
+const getDetailData = async(startDate, endDate) => {
+  const depositList = [
+    {type: 'depositDetailCorp', lable: '对公存款'},
+    {type: 'depositDetailSave', lable: '储蓄存款'},
+    {type: 'depositDetailCur', lable: '活期存款'}
+  ]
+  const loanList = [
+    {type: 'loanDetailCorp', lable: '对公贷款'},
+    {type: 'loanDetailPers', lable: '个人贷款'},
+  ]
+  const color = ['#188df0', '#52c41a', '#f5222d']
+
+  //存款
+  detailData.value[0].detail.seriesCount = 0
+  detailData.value[0].detail.lable = []
+  detailData.value[0].detail.color = []
+  detailData.value[0].detail.data = []
+  for (var dep in depositList){
+    var res = await getDALDataList(depositList[dep].type, 
+      {startDate: startDate, endDate: endDate, branch: userStore.userInfo.institutionId, page: 1, pageSize: 999})
+    if (res.code == 0 && res.data.total > 0){
+      detailData.value[0].detail.dayCount = res.data.total
+      detailData.value[0].detail.seriesCount += 1
+      detailData.value[0].detail.lable.push(depositList[dep].lable)
+      detailData.value[0].detail.color.push(color[dep])
+
+      var val = []
+      for (var l in res.data.list){
+        val.push({
+          date: res.data.list[l].DT,
+          val: res.data.list[l].DBAL
+        })
+      }
+      detailData.value[0].detail.data.push(val)
+    }
+  }
+  //贷款
+  detailData.value[1].detail.seriesCount = 0
+  detailData.value[1].detail.lable = []
+  detailData.value[1].detail.color = []
+  detailData.value[1].detail.data = []
+  for (var loan in loanList){
+    var res = await getDALDataList(loanList[loan].type, 
+      {startDate: startDate, endDate: endDate, branch: userStore.userInfo.institutionId, page: 1, pageSize: 999})
+    if (res.code == 0 && res.data.total > 0){
+      detailData.value[1].detail.dayCount = res.data.total
+      detailData.value[1].detail.seriesCount += 1
+      detailData.value[1].detail.lable.push(loanList[loan].lable)
+      detailData.value[1].detail.color.push(color[loan])
+
+      var val = []
+      for (var l in res.data.list){
+        val.push({
+          date: res.data.list[l].DT,
+          val: res.data.list[l].LBAL
+        })
+      }
+      detailData.value[1].detail.data.push(val)
+    }
+  }
+
+  console.log(detailData.value)
+}
 getData()
+getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
 
 const router = useRouter()
 const toTarget = (name) => {
@@ -72,15 +206,21 @@ const toTarget = (name) => {
 .page {
     @apply p-0;
     .gva-card-box{
-      @apply p-4;
+      @apply p-1;
       &+.gva-card-box{
         @apply pt-0;
       }
     }
     .gva-card {
-      @apply box-border bg-white rounded h-auto px-6 py-8 overflow-hidden shadow-sm;
+      @apply box-border bg-white rounded h-auto px-6 py-8 overflow-hidden shadow-sm ;
       .gva-card-title{
         @apply pb-5 border-t-0 border-l-0 border-r-0 border-b border-solid border-gray-100;
+      }
+      .date-picker{
+        position: absolute;
+        right:38px;
+        top:40px;
+        height: 40px;
       }
     }
     .gva-top-card {

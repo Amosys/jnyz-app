@@ -1,0 +1,4 @@
+[jnyz-app/server]2024/05/05 - 13:06:19.244	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/gorm.go:60	register table success
+[jnyz-app/server]2024/05/05 - 13:06:19.245	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:53	register swagger handler
+[jnyz-app/server]2024/05/05 - 13:06:19.246	[34minfo[0m	/home/amos/repo/jnyz-app/server/initialize/router.go:94	router register success
+[jnyz-app/server]2024/05/05 - 13:06:19.247	[34minfo[0m	/home/amos/repo/jnyz-app/server/core/server.go:43	server run success on 	{"address": ":9999"}

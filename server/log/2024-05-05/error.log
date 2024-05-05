@@ -1,0 +1,29 @@
+[jnyz-app/server]2024/05/05 - 13:06:13.324	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/05 - 15:45:57.391	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:51:04.883	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:56:15.076	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:57:08.930	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:57:32.102	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:58:30.915	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 15:59:12.396	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 16:02:15.285	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 16:06:56.209	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:06:30.506	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:07:34.716	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:11:00.399	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:18:40.479	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:25:43.808	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:26:58.200	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:30:34.230	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:35:41.617	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:35:49.768	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:38:01.727	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:38:30.822	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:41:36.144	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:46:10.759	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:46:15.694	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:51:23.795	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:51:44.255	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:53:23.718	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 20:55:20.392	[31merror[0m	/home/amos/repo/jnyz-app/server/api/v1/data/data_deposit_detail_corp.go:46	查询失败!	{"error": "record not found"}
+[jnyz-app/server]2024/05/05 - 23:29:41.856	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
