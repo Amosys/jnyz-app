@@ -42,8 +42,8 @@
                 value-format="YYYYMMDD">
               </el-date-picker>
             </div>
-            <div class="institution-selecter">
-              <el-select v-model="curInstitution" filterable placeholder="请选择">
+            <div class="institution-selecter" v-if="institutionSelShow">
+              <el-select @change="institutionChange" v-model="curInstitution" filterable placeholder="请选择">
                 <el-option
                   v-for="item in institutionOption"
                   :key="item.value"
@@ -111,9 +111,12 @@ const disabledDate =  (time) => {
   return time.getTime() >= Date.now() - 8.64e7
 }
 
-const institutionInfo = ref([])
+const institutionList = ref([])
+const institutionInfo = ref({})
 const institutionOption = ref([])
 const curInstitution = ref()
+const curInstitutionInfo = ref({})
+const institutionSelShow = ref(false)
 
 const datePickerChange = (date) =>{
   console.log(date)
@@ -377,48 +380,24 @@ const getDetailData = async(startDate, endDate) => {
   curDetail.value = detailData.value[0].detail
   console.log(detailData.value[0].detail)
 }
-const getInstitution = async() =>{
-  var res = await getInstitutionList({page: 1, pageSize: 999})
-  setInstitutionOptions(res.data.list, institutionOption.value, false)
+
+const tabChange = (tab) => {
+  activeName.value = detailData.value[tab.index].name
+  curDetail.value = detailData.value[tab.index].detail
+  console.log(curDetail.value)
 }
-const setInstitutionOptions = (InstitutionData, optionsData) => {
-  InstitutionData &&
-        InstitutionData.forEach(item => {
-          if (item.children && item.children.length) {
-            const option = {
-              institutionId: item.institutionId,
-              institutionName: item.institutionName,
-              children: []
-            }
-            setInstitutionOptions(
-              item.children,
-              optionsData,
-            )
-          } else {
-            if (userStore.userInfo.institutionId == item.institutionId){
-              institutionInfo.value = item
-              const option = {
-                value: item.institutionId,
-                label: item.institutionName,
-              }
-              optionsData.push(option)
-              curInstitution.value = item.institutionId
-            }
-            else {
-              if (5 == item.institutionLevel){
-                const option = {
-                  value: item.institutionId,
-                  label: item.institutionName,
-                }
-                optionsData.push(option)
-              }
-            }
-          }
-        })
+const institutionChange = async(i) => {
+  console.log(i)
+  for (var ins in institutionList.value){
+    if (i == institutionList.value[ins].institutionId){
+      curInstitution.value = i
+      curInstitutionInfo.value = institutionList.value[ins]
+    }
+  }
+  getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
 }
-getData()
-getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
 getInstitution()
+
 const router = useRouter()
 const toTarget = (name) => {
   router.push({ name })
