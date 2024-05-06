@@ -42,6 +42,16 @@
                 value-format="YYYYMMDD">
               </el-date-picker>
             </div>
+            <div class="institution-selecter">
+              <el-select v-model="curInstitution" filterable placeholder="请选择">
+                <el-option
+                  v-for="item in institutionOption"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
           </div>
         </div>
       </el-col>
@@ -62,6 +72,9 @@ import {
   findDALData,
   getDALDataList,
 } from '@/api/dataDAL'
+import {
+  getInstitutionList
+} from '@/api/institution'
 
 const userStore = useUserStore()
 const toolCards = ref([])
@@ -96,6 +109,10 @@ const selDate = ref([formatTimeToStr(new Date(Date.now() - 8 * 8.64e7), "yyyyMMd
 const disabledDate =  (time) => {
   return time.getTime() >= Date.now() - 8.64e7
 }
+
+const institutionInfo = ref([])
+const institutionOption = ref([])
+const curInstitution = ref()
 
 const datePickerChange = (date) =>{
   console.log(date)
@@ -192,9 +209,48 @@ const getDetailData = async(startDate, endDate) => {
 
   console.log(detailData.value)
 }
+const getInstitution = async() =>{
+  var res = await getInstitutionList({page: 1, pageSize: 999})
+  setInstitutionOptions(res.data.list, institutionOption.value, false)
+}
+const setInstitutionOptions = (InstitutionData, optionsData) => {
+  InstitutionData &&
+        InstitutionData.forEach(item => {
+          if (item.children && item.children.length) {
+            const option = {
+              institutionId: item.institutionId,
+              institutionName: item.institutionName,
+              children: []
+            }
+            setInstitutionOptions(
+              item.children,
+              optionsData,
+            )
+          } else {
+            if (userStore.userInfo.institutionId == item.institutionId){
+              institutionInfo.value = item
+              const option = {
+                value: item.institutionId,
+                label: item.institutionName,
+              }
+              optionsData.push(option)
+              curInstitution.value = item.institutionId
+            }
+            else {
+              if (5 == item.institutionLevel){
+                const option = {
+                  value: item.institutionId,
+                  label: item.institutionName,
+                }
+                optionsData.push(option)
+              }
+            }
+          }
+        })
+}
 getData()
 getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
-
+getInstitution()
 const router = useRouter()
 const toTarget = (name) => {
   router.push({ name })
@@ -218,9 +274,16 @@ const toTarget = (name) => {
       }
       .date-picker{
         position: absolute;
+        right:150px;
+        top:40px;
+        height: 40px;
+      }
+      .institution-selecter{
+        position: absolute;
         right:38px;
         top:40px;
         height: 40px;
+        width: 100px;
       }
     }
     .gva-top-card {
