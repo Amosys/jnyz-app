@@ -18,7 +18,11 @@ func (DALBankService *DataDALBankService) CreateDALBank(value interface{}) (err 
 // GetDataDALBank 根据DT获取单条数据记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (DALBankService *DataDALBankService) GetDALBank(date uint, tp interface{}) (err error) {
-	err = global.GVA_DB.Model(tp).Where("DT = ?", date).First(&tp).Error
+	db := global.GVA_DB.Model(tp)
+	if date != 0 {
+		db = db.Where("DT = ?", date)
+	}
+	err = db.Order("id desc").First(&tp).Error
 	return
 }
 

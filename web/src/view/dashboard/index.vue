@@ -1,7 +1,7 @@
 <template>
   <div class="page">
-    <el-row :gutter="24">
-      <el-col v-for="card in toolCards" :sm="24" :md="8" :xl="8"  :style="{ marginTop: '12px'}">
+    <el-row :gutter="12">
+      <el-col v-for="card in toolCards" :sm="24" :md="6" :xl="6"  :style="{ margin: '12px 0px'}">
         <ChartCard :title=card.title :total=card.total>
           <div>
             <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d>
@@ -18,14 +18,14 @@
       <el-col :xs="24" :sm="24" :xl="24">
         <div class="gva-card-box">
           <div class="gva-card">
-            <el-tabs v-model="activeName" type="card">
+            <el-tabs @tab-click="tabChange" v-model="activeName" type="card">
               <span v-for="detail in detailData" >
                 <el-tab-pane :label=detail.label :name=detail.name>
                   {{ detail.label }}
-                  <ChartLine :detail=detail.detail />
                 </el-tab-pane>
               </span>
-            </el-tabs>  
+              <ChartLine :detail=curDetail />
+            </el-tabs> 
             <div class="date-picker">
               <el-date-picker
                 v-model="selDate"
@@ -103,7 +103,8 @@ const detailData = ref([
   }
 ])
 const activeName = ref('存款')
-const dalData = ref({})
+const curDetail = ref({})
+
 const selDate = ref([formatTimeToStr(new Date(Date.now() - 8 * 8.64e7), "yyyyMMdd"),
    formatTimeToStr(new Date(Date.now() - 8.64e7), "yyyyMMdd")])
 const disabledDate =  (time) => {
@@ -120,94 +121,261 @@ const datePickerChange = (date) =>{
 }
 
 // 查询
-const getData = async() => {
-  //各项存款
-  var res = await findDALData("depositSub", {branch: userStore.userInfo.institutionId})
-  if (res.code == 0){
-    const deposit = res.data.reDepositSub
-    toolCards.value.push({
-      title: "各项存款",
-      total: deposit.DBAL,
-      c2d: deposit.DBAL_C2D,
-      c2by: deposit.DBAL_C2BY,
-      c2byp: deposit.DBAL_INCP_C2BY,
-    })
+
+const getInstitution = async() =>{
+  var res = await getInstitutionList({page: 1, pageSize: 999})
+  setInstitutionOptions(res.data.list, institutionOption.value, false)
+    
+  getCardData()
+  getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
+}
+const setInstitutionOptions = (InstitutionData, optionsData) => {
+  InstitutionData &&
+        InstitutionData.forEach(item => {
+          if (item.children && item.children.length) {
+            const option = {
+              institutionId: item.institutionId,
+              institutionName: item.institutionName,
+              children: []
+            }
+            setInstitutionOptions(
+              item.children,
+              optionsData,
+            )
+          } else {
+            institutionList.value.push(item)
+            if (userStore.userInfo.institutionId == item.institutionId){
+              institutionInfo.value = item
+              var option = {}
+              if (1 == item.institutionLevel){
+                option = {
+                  value: item.institutionId,
+                  label: '全行',
+                }
+                institutionSelShow.value = true
+              }
+              else{
+                option = {
+                  value: item.institutionId,
+                  label: item.institutionName,
+                }
+                institutionSelShow.value = false
+              }
+              optionsData.unshift(option)
+              curInstitution.value = item.institutionId
+              curInstitutionInfo.value = item
+            }
+            else {
+              if (5 == item.institutionLevel){
+                const option = {
+                  value: item.institutionId,
+                  label: item.institutionName,
+                }
+                optionsData.push(option)
+              }
+            }
+          }
+        })
+}
+const getCardData = async() => {
+  if (1 == institutionInfo.value.institutionLevel){
+    var res = await findDALData("depositBank", {})
+    if (res.code == 0){
+      const deposit = res.data.reDepositBank
+      toolCards.value.push({
+        title: "各项存款",
+        total: deposit.DBAL,
+        c2d: deposit.DBAL_C2D,
+        c2by: deposit.DBAL_C2BY,
+      })
+      toolCards.value.push({
+        title: "储蓄存款",
+        total: deposit.SDBAL,
+        c2d: deposit.SDBAL_C2D,
+        c2by: deposit.SDBAL_C2BY,
+      })
+      toolCards.value.push({
+        title: "活期存款",
+        total: deposit.CDBAL,
+        c2d: deposit.CDBAL_C2D,
+        c2by: deposit.CDBAL_C2BY,
+      })
+    }
+    res = await findDALData("loanBank", {})
+    if (res.code == 0){
+      const deposit = res.data.reLoanBank
+      toolCards.value.push({
+        title: "各项贷款",
+        total: deposit.LBAL,
+        c2d: deposit.LBAL_C2D,
+        c2by: deposit.LBAL_C2BY,
+      })
+    }
+    console.log(toolCards.value)
   }
-  //获取各项贷款款数据
-  res = await findDALData("loanSub", {branch: userStore.userInfo.institutionId})
-  if (res.code == 0){
-    const loan = res.data.reLoanSub
-    toolCards.value.push({
-      title: "各项贷款",
-      total: loan.LBAL,
-      c2d: loan.LBAL_C2D,
-      c2by: loan.LBAL_C2BY,
-      c2byp: loan.LBAL_INCP_C2BY,
-    })
+  else{
+    //各项存款
+    var res = await findDALData("depositSub", {branch: userStore.userInfo.institutionId})
+    if (res.code == 0){
+      const deposit = res.data.reDepositSub
+      toolCards.value.push({
+        title: "各项存款",
+        total: deposit.DBAL,
+        c2d: deposit.DBAL_C2D,
+        c2by: deposit.DBAL_C2BY,
+        c2byp: deposit.DBAL_INCP_C2BY,
+      })
+    }
+    //储蓄存款
+    res = await findDALData("depositDetailSave", {branch: userStore.userInfo.institutionId})
+    if (res.code == 0){
+      const deposit = res.data.reDepositDetailSave
+      toolCards.value.push({
+        title: "储蓄存款",
+        total: deposit.DBAL,
+        c2d: deposit.DBAL_C2D,
+        c2by: deposit.DBAL_C2BY,
+        c2byp: deposit.DBAL_INCP_C2BY,
+      })
+    }
+    //对公存款
+    res = await findDALData("depositDetailCorp", {branch: userStore.userInfo.institutionId})
+    if (res.code == 0){
+      const deposit = res.data.reDepositDetailCorp
+      toolCards.value.push({
+        title: "对公存款",
+        total: deposit.DBAL,
+        c2d: deposit.DBAL_C2D,
+        c2by: deposit.DBAL_C2BY,
+        c2byp: deposit.DBAL_INCP_C2BY,
+      })
+    }
+    //各项贷款
+    res = await findDALData("loanSub", {branch: userStore.userInfo.institutionId})
+    if (res.code == 0){
+      const loan = res.data.reLoanSub
+      toolCards.value.push({
+        title: "各项贷款",
+        total: loan.LBAL,
+        c2d: loan.LBAL_C2D,
+        c2by: loan.LBAL_C2BY,
+        c2byp: loan.LBAL_INCP_C2BY,
+      })
+    }
   }
 }
 const getDetailData = async(startDate, endDate) => {
-  const depositList = [
-    {type: 'depositDetailCorp', lable: '对公存款'},
-    {type: 'depositDetailSave', lable: '储蓄存款'},
-    {type: 'depositDetailCur', lable: '活期存款'}
-  ]
-  const loanList = [
-    {type: 'loanDetailCorp', lable: '对公贷款'},
-    {type: 'loanDetailPers', lable: '个人贷款'},
-  ]
   const color = ['#188df0', '#52c41a', '#f5222d']
-
-  //存款
-  detailData.value[0].detail.seriesCount = 0
-  detailData.value[0].detail.lable = []
-  detailData.value[0].detail.color = []
-  detailData.value[0].detail.data = []
-  for (var dep in depositList){
-    var res = await getDALDataList(depositList[dep].type, 
-      {startDate: startDate, endDate: endDate, branch: userStore.userInfo.institutionId, page: 1, pageSize: 999})
+  console.log(curInstitutionInfo.value)
+  if (1 == curInstitutionInfo.value.institutionLevel){
+    var res = await getDALDataList("depositBank", 
+      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
     if (res.code == 0 && res.data.total > 0){
       detailData.value[0].detail.dayCount = res.data.total
-      detailData.value[0].detail.seriesCount += 1
-      detailData.value[0].detail.lable.push(depositList[dep].lable)
-      detailData.value[0].detail.color.push(color[dep])
+      detailData.value[0].detail.seriesCount = 2
+      detailData.value[0].detail.lable = ['储蓄存款', '对公存款']
+      detailData.value[0].detail.color = color
 
-      var val = []
+      var val = [[], []]
       for (var l in res.data.list){
-        val.push({
+        val[0].push({
           date: res.data.list[l].DT,
-          val: res.data.list[l].DBAL
+          val: res.data.list[l].SDBAL
+        })
+        val[1].push({
+          date: res.data.list[l].DT,
+          val: res.data.list[l].CDBAL
         })
       }
-      detailData.value[0].detail.data.push(val)
+      detailData.value[0].detail.data.push(val[0])
+      detailData.value[0].detail.data.push(val[1])
     }
-  }
-  //贷款
-  detailData.value[1].detail.seriesCount = 0
-  detailData.value[1].detail.lable = []
-  detailData.value[1].detail.color = []
-  detailData.value[1].detail.data = []
-  for (var loan in loanList){
-    var res = await getDALDataList(loanList[loan].type, 
-      {startDate: startDate, endDate: endDate, branch: userStore.userInfo.institutionId, page: 1, pageSize: 999})
+    res = await getDALDataList("loanBank", 
+      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
     if (res.code == 0 && res.data.total > 0){
       detailData.value[1].detail.dayCount = res.data.total
-      detailData.value[1].detail.seriesCount += 1
-      detailData.value[1].detail.lable.push(loanList[loan].lable)
-      detailData.value[1].detail.color.push(color[loan])
+      detailData.value[1].detail.seriesCount = 2
+      detailData.value[1].detail.lable = ['对公贷款', '个人贷款']
+      detailData.value[1].detail.color = color
 
-      var val = []
+      var val = [[], []]
       for (var l in res.data.list){
-        val.push({
+        val[0].push({
           date: res.data.list[l].DT,
-          val: res.data.list[l].LBAL
+          val: res.data.list[l].LBAL_CORP
+        })
+        val[1].push({
+          date: res.data.list[l].DT,
+          val: res.data.list[l].LBAL_PERS
         })
       }
-      detailData.value[1].detail.data.push(val)
+      detailData.value[1].detail.data.push(val[0])
+      detailData.value[1].detail.data.push(val[1])
     }
   }
+  else{
+    const depositList = [
+      {type: 'depositDetailCorp', lable: '对公存款'},
+      {type: 'depositDetailSave', lable: '储蓄存款'},
+      {type: 'depositDetailCur', lable: '活期存款'}
+    ]
+    const loanList = [
+      {type: 'loanDetailCorp', lable: '对公贷款'},
+      {type: 'loanDetailPers', lable: '个人贷款'},
+    ]
 
-  console.log(detailData.value)
+    //存款
+    detailData.value[0].detail.seriesCount = 0
+    detailData.value[0].detail.lable = []
+    detailData.value[0].detail.color = []
+    detailData.value[0].detail.data = []
+    for (var dep in depositList){
+      var res = await getDALDataList(depositList[dep].type, 
+        {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
+      if (res.code == 0 && res.data.total > 0){
+        detailData.value[0].detail.dayCount = res.data.total
+        detailData.value[0].detail.seriesCount += 1
+        detailData.value[0].detail.lable.push(depositList[dep].lable)
+        detailData.value[0].detail.color.push(color[dep])
+
+        var val = []
+        for (var l in res.data.list){
+          val.push({
+            date: res.data.list[l].DT,
+            val: res.data.list[l].DBAL
+          })
+        }
+        detailData.value[0].detail.data.push(val)
+      }
+    }
+    //贷款
+    detailData.value[1].detail.seriesCount = 0
+    detailData.value[1].detail.lable = []
+    detailData.value[1].detail.color = []
+    detailData.value[1].detail.data = []
+    for (var loan in loanList){
+      var res = await getDALDataList(loanList[loan].type, 
+        {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
+      if (res.code == 0 && res.data.total > 0){
+        detailData.value[1].detail.dayCount = res.data.total
+        detailData.value[1].detail.seriesCount += 1
+        detailData.value[1].detail.lable.push(loanList[loan].lable)
+        detailData.value[1].detail.color.push(color[loan])
+
+        var val = []
+        for (var l in res.data.list){
+          val.push({
+            date: res.data.list[l].DT,
+            val: res.data.list[l].LBAL
+          })
+        }
+        detailData.value[1].detail.data.push(val)
+      }
+    }
+  }
+  activeName.value = detailData.value[0].name
+  curDetail.value = detailData.value[0].detail
+  console.log(detailData.value[0].detail)
 }
 const getInstitution = async() =>{
   var res = await getInstitutionList({page: 1, pageSize: 999})

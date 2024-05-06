@@ -3,9 +3,9 @@
  */
 
 const config = {
-  appName: 'MyAdmin',
+  appName: 'JNYZ',
   appLogo: '',
-  showViteLogo: true,
+  showViteLogo: false,
   logs: [],
 }
 

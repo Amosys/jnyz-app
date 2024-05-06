@@ -34,11 +34,13 @@ export default{
     let chart = null
     const echart = ref(null)
     
-    watch(props.detail.data, () =>{
-      initChart()
+    watch(props, ()=>{
+      
+      setOptions()
     })
     onMounted(async() => {
       await nextTick()
+      initChart()
     })
 
     onUnmounted(async() => {
@@ -58,12 +60,13 @@ export default{
         chart = null
       }
       chart = echarts.init(document.getElementById('echart'))
-      setOptions()
+      
     }
     const setOptions = () => {
       var dataAxis = []
       var series = []
-
+      console.log(props.detail)
+      console.log(chart)
       for (var ser = 0; ser < props.detail.seriesCount; ser++){
         var data = []
         for (var day = 0; day < props.detail.data[ser].length; day++){
@@ -126,10 +129,6 @@ export default{
         ],
         series: series
       })
-
-      return{
-        echart
-      }
     }
   },
 }
