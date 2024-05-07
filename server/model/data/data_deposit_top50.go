@@ -31,5 +31,5 @@ type DataDepositTop50 struct {
 }
 
 func (DataDepositTop50) TableName() string {
-	return "DATA_DEPOSIT_DTOP50"
+	return "DATA_DEPOSIT_TOP50"
 }
