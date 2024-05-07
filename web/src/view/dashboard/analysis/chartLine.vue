@@ -65,14 +65,15 @@ export default{
     const setOptions = () => {
       var dataAxis = []
       var series = []
+      var legend = []
       console.log(props.detail)
-      console.log(chart)
       for (var ser = 0; ser < props.detail.seriesCount; ser++){
         var data = []
-        for (var day = 0; day < props.detail.data[ser].length; day++){
+        for (var day = 0; day < props.detail.dayCount; day++){
           data.push(props.detail.data[ser][day].val)
         }
         series.push({
+          name: props.detail.lable[ser],
           type: 'bar',
           barWidth: '40%',
           itemStyle: {
@@ -88,7 +89,8 @@ export default{
           stack: 'x',
         })
       }
-      for (var day = 0; day < props.detail.data[0].length; day++){
+      console.log(series)
+      for (var day = 0; day < props.detail.dayCount; day++){
         dataAxis.push(numberToDate(props.detail.data[0][day].date))
       }
 
@@ -127,8 +129,10 @@ export default{
             type: 'inside',
           },
         ],
+        legend: {
+        },
         series: series
-      })
+      }, true)
     }
   },
 }

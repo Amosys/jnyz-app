@@ -21,7 +21,6 @@
             <el-tabs @tab-click="tabChange" v-model="activeName" type="card">
               <span v-for="detail in detailData" >
                 <el-tab-pane :label=detail.label :name=detail.name>
-                  {{ detail.label }}
                 </el-tab-pane>
               </span>
               <ChartLine :detail=curDetail />
@@ -127,8 +126,7 @@ const datePickerChange = (date) =>{
 
 const getInstitution = async() =>{
   var res = await getInstitutionList({page: 1, pageSize: 999})
-  setInstitutionOptions(res.data.list, institutionOption.value, false)
-    
+  setInstitutionOptions(res.data.list, institutionOption.value)
   getCardData()
   getDetailData(Number(selDate.value[0]), Number(selDate.value[1]))
 }
@@ -269,15 +267,28 @@ const getCardData = async() => {
 }
 const getDetailData = async(startDate, endDate) => {
   const color = ['#188df0', '#52c41a', '#f5222d']
-  console.log(curInstitutionInfo.value)
+  var detailList = []
+  console.log(curInstitutionInfo.value, curInstitution)
+  console.log(detailList)
   if (1 == curInstitutionInfo.value.institutionLevel){
     var res = await getDALDataList("depositBank", 
       {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
     if (res.code == 0 && res.data.total > 0){
-      detailData.value[0].detail.dayCount = res.data.total
-      detailData.value[0].detail.seriesCount = 2
-      detailData.value[0].detail.lable = ['储蓄存款', '对公存款']
-      detailData.value[0].detail.color = color
+      var det = {
+          label: '存款',
+          name: 'deposit',
+          detail: {
+            dayCount: 0,
+            seriesCount: 0,
+            lable: [],
+            color: [],
+            data: []
+          }
+        }
+      det.detail.dayCount = res.data.total
+      det.detail.seriesCount = 2
+      det.detail.lable = ['储蓄存款', '对公存款']
+      det.detail.color = color
 
       var val = [[], []]
       for (var l in res.data.list){
@@ -290,16 +301,28 @@ const getDetailData = async(startDate, endDate) => {
           val: res.data.list[l].CDBAL
         })
       }
-      detailData.value[0].detail.data.push(val[0])
-      detailData.value[0].detail.data.push(val[1])
+      det.detail.data.push(val[0])
+      det.detail.data.push(val[1])
+      detailList.push(det)
     }
     res = await getDALDataList("loanBank", 
       {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
     if (res.code == 0 && res.data.total > 0){
-      detailData.value[1].detail.dayCount = res.data.total
-      detailData.value[1].detail.seriesCount = 2
-      detailData.value[1].detail.lable = ['对公贷款', '个人贷款']
-      detailData.value[1].detail.color = color
+      var det = {
+          label: '贷款',
+          name: 'loan',
+          detail: {
+            dayCount: 0,
+            seriesCount: 0,
+            lable: [],
+            color: [],
+            data: []
+          }
+        }
+      det.detail.dayCount = res.data.total
+      det.detail.seriesCount = 2
+      det.detail.lable = ['对公贷款', '个人贷款']
+      det.detail.color = color
 
       var val = [[], []]
       for (var l in res.data.list){
@@ -312,8 +335,9 @@ const getDetailData = async(startDate, endDate) => {
           val: res.data.list[l].LBAL_PERS
         })
       }
-      detailData.value[1].detail.data.push(val[0])
-      detailData.value[1].detail.data.push(val[1])
+      det.detail.data.push(val[0])
+      det.detail.data.push(val[1])
+      detailList.push(det)
     }
   }
   else{
@@ -328,18 +352,25 @@ const getDetailData = async(startDate, endDate) => {
     ]
 
     //存款
-    detailData.value[0].detail.seriesCount = 0
-    detailData.value[0].detail.lable = []
-    detailData.value[0].detail.color = []
-    detailData.value[0].detail.data = []
+    var det = {
+      label: '存款',
+      name: 'deposit',
+      detail: {
+        dayCount: 0,
+        seriesCount: 0,
+        lable: [],
+        color: [],
+        data: []
+      }
+    }
     for (var dep in depositList){
       var res = await getDALDataList(depositList[dep].type, 
         {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
       if (res.code == 0 && res.data.total > 0){
-        detailData.value[0].detail.dayCount = res.data.total
-        detailData.value[0].detail.seriesCount += 1
-        detailData.value[0].detail.lable.push(depositList[dep].lable)
-        detailData.value[0].detail.color.push(color[dep])
+        det.detail.dayCount = res.data.total
+        det.detail.seriesCount += 1
+        det.detail.lable.push(depositList[dep].lable)
+        det.detail.color.push(color[dep])
 
         var val = []
         for (var l in res.data.list){
@@ -348,22 +379,30 @@ const getDetailData = async(startDate, endDate) => {
             val: res.data.list[l].DBAL
           })
         }
-        detailData.value[0].detail.data.push(val)
+        det.detail.data.push(val)
       }
     }
+    detailList.push(det)
     //贷款
-    detailData.value[1].detail.seriesCount = 0
-    detailData.value[1].detail.lable = []
-    detailData.value[1].detail.color = []
-    detailData.value[1].detail.data = []
+    det = {
+      label: '贷款',
+      name: 'loan',
+      detail: {
+        dayCount: 0,
+        seriesCount: 0,
+        lable: [],
+        color: [],
+        data: []
+      }
+    }
     for (var loan in loanList){
       var res = await getDALDataList(loanList[loan].type, 
         {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
       if (res.code == 0 && res.data.total > 0){
-        detailData.value[1].detail.dayCount = res.data.total
-        detailData.value[1].detail.seriesCount += 1
-        detailData.value[1].detail.lable.push(loanList[loan].lable)
-        detailData.value[1].detail.color.push(color[loan])
+        det.detail.dayCount = res.data.total
+        det.detail.seriesCount += 1
+        det.detail.lable.push(loanList[loan].lable)
+        det.detail.color.push(color[loan])
 
         var val = []
         for (var l in res.data.list){
@@ -372,13 +411,15 @@ const getDetailData = async(startDate, endDate) => {
             val: res.data.list[l].LBAL
           })
         }
-        detailData.value[1].detail.data.push(val)
+        det.detail.data.push(val)
       }
     }
+    detailList.push(det)
   }
+  detailData.value = detailList
   activeName.value = detailData.value[0].name
   curDetail.value = detailData.value[0].detail
-  console.log(detailData.value[0].detail)
+  console.log(detailData.value)
 }
 
 const tabChange = (tab) => {
@@ -390,7 +431,6 @@ const institutionChange = async(i) => {
   console.log(i)
   for (var ins in institutionList.value){
     if (i == institutionList.value[ins].institutionId){
-      curInstitution.value = i
       curInstitutionInfo.value = institutionList.value[ins]
     }
   }
