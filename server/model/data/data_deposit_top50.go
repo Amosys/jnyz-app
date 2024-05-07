@@ -23,6 +23,11 @@ type DataDepositTop50 struct {
 	TransactionsDecreaseSeason uint    `json:"DTRANS_DEC_SEA" gorm:"column:DTRANS_DEC_SEA;comment:当季流出笔数"`
 	BalanceDecreaseSeason      float64 `json:"DBAL_DEC_SEA" gorm:"column:DBAL_DEC_SEA;comment:当季流出金额（万元）"`
 	NetInflowSeason            float64 `json:"NETINFLOW_SEA" gorm:"column:NETINFLOW_SEA;comment:当季净流入（万元）"`
+	TransactionsIncreaseYear uint    `json:"DTRANS_INC_YEAR" gorm:"column:DTRANS_INC_YEAR;comment:当年流入笔数"`
+	BalanceIncreaseYear     float64 `json:"DBAL_INC_YEAR" gorm:"column:DBAL_INC_YEAR;comment:当年流入金额（万元）"`
+	TransactionsDecreaseYear uint    `json:"DTRANS_DEC_YEAR" gorm:"column:DTRANS_DEC_YEAR;comment:当年流出笔数"`
+	BalanceDecreaseYear     float64 `json:"DBAL_DEC_YEAR" gorm:"column:DBAL_DEC_YEAR;comment:当年流出金额（万元）"`
+	NetInflowYear           float64 `json:"NETINFLOW_YEAR" gorm:"column:NETINFLOW_YEAR;comment:当年净流入（万元）"`
 }
 
 func (DataDepositTop50) TableName() string {
