@@ -97,7 +97,6 @@ export default ({
       }
     },
   }
-  console.log(config.server)
 
   if (NODE_ENV === 'development') {
     config.plugins.push(

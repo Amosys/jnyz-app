@@ -25,6 +25,7 @@ export default{
         seriesCount: 3,
         lable: ['对公存款', '储蓄存款', '活期存款'],
         color: ['#188df0', '#52c41a', '#f5222d'],
+        unit:['元', '元', '元'],
         data: [
         ]
       }
@@ -122,7 +123,8 @@ export default{
             textStyle: {
               color: '#999',
             },
-          }
+          },
+          name: '金额（元）'
         },
         dataZoom: [
           {
@@ -130,6 +132,13 @@ export default{
           },
         ],
         legend: {
+        },
+        tooltip: {
+          trigger: 'item',
+          axisPointer: {
+              type: 'shadow'
+          },
+          formatter: '{a}<br/>{b}：{c}',
         },
         series: series
       }, true)

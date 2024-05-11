@@ -1,4 +1,4 @@
 /*! 
  Build based on gin-vue-admin 
- Time : 1709213701000 */
-import{o as a,c as o,B as t,b as e}from"./087AC4D233B64EB0index.js";const r={class:"flex gap-4 items-center text-sm text-gray-500 justify-center mb-4"},n=e("span",null,"Powered by",-1),s=e("span",null,[e("a",{class:"text-gray-800 font-bold",href:"https://github.com/flipped-aurora/gin-vue-admin"},"Gin-Vue-Admin")],-1),p=e("span",null,"Copyright",-1),d=e("span",null,[e("a",{class:"text-gray-800 font-bold",href:"https://github.com/flipped-aurora"},"flipped-aurora团队")],-1),l=Object.assign({name:"BottomInfo"},{__name:"bottomInfo",setup:e=>(console.log("%c powered by %c flipped-aurorae %c","background:#0081ff; padding: 1px; border-radius: 3px 0 0 3px; color: #fff","background:#354855; padding: 1px 5px; border-radius: 0 3px 3px 0; color: #fff; font-weight: bold;","background:transparent"),(e,l)=>(a(),o("div",r,[n,s,t(e.$slots,"default"),p,d])))});export{l as default};
+ Time : 1715432289000 */
+import{_ as e}from"./087AC4D233B64EB0_plugin-vue_export-helper.js";import{o as t,c as s,b as r}from"./087AC4D233B64EB0index.js";const n={},a={class:"flex gap-4 items-center text-sm text-gray-500 justify-center mb-4"},o=[r("span",null,"泾农云助",-1)];const i=e(n,[["render",function(e,r){return t(),s("div",a,o)}]]);export{i as default};

@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex gap-4 items-center text-sm text-gray-500 justify-center mb-4">
-    <span>泾农云助</span>
+    <span>泾县农商行</span>
   </div>
 </template>
 

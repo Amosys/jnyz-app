@@ -2,11 +2,11 @@
   <div class="page">
     <el-row :gutter="12">
       <el-col v-for="card in toolCards" :sm="24" :md="6" :xl="6"  :style="{ margin: '12px 0px'}">
-        <ChartCard :title=card.title :total=card.total>
+        <ChartCard :title=card.title :total=card.total :pValue=card.totalP>
           <div>
-            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d>
+            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d :pValue=card.c2dP>
             </trend>
-            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by>
+            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by :pValue=card.c2byP>
             </trend>
           </div>
           <template slot="footer">较年初
@@ -186,20 +186,29 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "各项存款",
         total: deposit.DBAL,
+        totalP: '亿元',
         c2d: deposit.DBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.DBAL_C2BY,
+        c2byP: '亿元',
       })
       toolCards.value.push({
         title: "储蓄存款",
         total: deposit.SDBAL,
+        totalP: '亿元',
         c2d: deposit.SDBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.SDBAL_C2BY,
+        c2byP: '亿元',
       })
       toolCards.value.push({
-        title: "活期存款",
+        title: "对公存款",
         total: deposit.CDBAL,
+        totalP: '亿元',
         c2d: deposit.CDBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.CDBAL_C2BY,
+        c2byP: '亿元',
       })
     }
     res = await findDALData("loanBank", {})
@@ -208,8 +217,11 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "各项贷款",
         total: deposit.LBAL,
+        totalP: '亿元',
         c2d: deposit.LBAL_C2D,
+        c2dP: '亿元',
         c2by: deposit.LBAL_C2BY,
+        c2byP: '亿元',
       })
     }
     console.log(toolCards.value)
@@ -222,8 +234,11 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "各项存款",
         total: deposit.DBAL,
+        totalP: '亿元',
         c2d: deposit.DBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.DBAL_C2BY,
+        c2byP: '万元',
         c2byp: deposit.DBAL_INCP_C2BY,
       })
     }
@@ -234,8 +249,11 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "储蓄存款",
         total: deposit.DBAL,
+        totalP: '亿元',
         c2d: deposit.DBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.DBAL_C2BY,
+        c2byP: '万元',
         c2byp: deposit.DBAL_INCP_C2BY,
       })
     }
@@ -246,8 +264,11 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "对公存款",
         total: deposit.DBAL,
+        totalP: '亿元',
         c2d: deposit.DBAL_C2D,
+        c2dP: '万元',
         c2by: deposit.DBAL_C2BY,
+        c2byP: '万元',
         c2byp: deposit.DBAL_INCP_C2BY,
       })
     }
@@ -258,8 +279,11 @@ const getCardData = async() => {
       toolCards.value.push({
         title: "各项贷款",
         total: loan.LBAL,
+        totalP: '万元',
         c2d: loan.LBAL_C2D,
+        c2dP: '万元',
         c2by: loan.LBAL_C2BY,
+        c2byP: '万元',
         c2byp: loan.LBAL_INCP_C2BY,
       })
     }

@@ -1,0 +1,3 @@
+[jnyz-app/server]2024/05/09 - 21:29:09.976	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	net.Listen error: listen tcp :9999: bind: address already in use
+[jnyz-app/server]2024/05/09 - 21:29:25.199	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
+[jnyz-app/server]2024/05/09 - 21:53:16.453	[31merror[0m	/home/amos/repo/jnyz-app/server/core/server.go:55	accept tcp [::]:9999: use of closed network connection
