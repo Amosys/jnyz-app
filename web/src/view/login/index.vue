@@ -19,7 +19,7 @@
               >
             </div>
             <div class="mb-9">
-              <p class="text-center text-4xl font-bold">泾农云助</p>
+              <p class="text-center text-4xl font-bold">泾县农商行</p>
               <p class="text-center text-sm font-normal text-gray-500 mt-2.5">泾县农商行云助手 </p>
             </div>
             <el-form

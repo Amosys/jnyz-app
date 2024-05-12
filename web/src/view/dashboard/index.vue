@@ -102,6 +102,7 @@ const detailData = ref([
   }
 ])
 const activeName = ref('存款')
+const curTabIndex = ref(0)
 const curDetail = ref({})
 
 const selDate = ref([formatTimeToStr(new Date(Date.now() - 8 * 8.64e7), "yyyyMMdd"),
@@ -441,12 +442,13 @@ const getDetailData = async(startDate, endDate) => {
     detailList.push(det)
   }
   detailData.value = detailList
-  activeName.value = detailData.value[0].name
-  curDetail.value = detailData.value[0].detail
+  activeName.value = detailData.value[curTabIndex.value].name
+  curDetail.value = detailData.value[curTabIndex.value].detail
   console.log(detailData.value)
 }
 
 const tabChange = (tab) => {
+  curTabIndex.value = tab.index
   activeName.value = detailData.value[tab.index].name
   curDetail.value = detailData.value[tab.index].detail
   console.log(curDetail.value)
