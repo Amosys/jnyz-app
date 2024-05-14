@@ -124,6 +124,7 @@ export default{
               color: '#999',
             },
           },
+          scale: true,
           name: '金额（元）'
         },
         dataZoom: [

@@ -84,7 +84,7 @@
                   @click="submitForm"
                 >登 录</el-button>
               </el-form-item>
-              <el-form-item class="mb-6">
+              <el-form-item class="mb-6" v-if="showInit">
                 <el-button
                   class="shadow shadow-blue-600 h-11 w-full"
                   type="primary"
@@ -160,6 +160,7 @@ defineOptions({
   name: 'Login',
 })
 
+const showInit = ref(false)
 const router = useRouter()
 // 验证函数
 const checkUsername = (rule, value, callback) => {

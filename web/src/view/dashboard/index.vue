@@ -23,7 +23,14 @@
                 <el-tab-pane :label=detail.label :name=detail.name>
                 </el-tab-pane>
               </span>
-              <ChartLine :detail=curDetail />
+              <el-row>
+                <el-col  :xs="24" :sm="16" :xl="16">
+                  <ChartLine :detail=curDetail />
+                </el-col>
+                <el-col :xs="24" :sm="8" :xl="8">
+                  <ChartTable />
+                </el-col>
+              </el-row>
             </el-tabs> 
             <div class="date-picker">
               <el-date-picker
@@ -62,6 +69,7 @@
 import ChartCard from '@/view/dashboard/analysis/chartCard.vue'
 import Trend from '@/view/dashboard/analysis/trend.vue'
 import ChartLine from '@/view/dashboard/analysis/chartLine.vue'
+import ChartTable from '@/view/dashboard/analysis/chartTable.vue'
 import { formatTimeToStr } from '@/utils/date'
 import { useUserStore } from '@/pinia/modules/user'
 import { ref } from 'vue'

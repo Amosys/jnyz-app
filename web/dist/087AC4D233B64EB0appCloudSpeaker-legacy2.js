@@ -1,4 +1,0 @@
-/*! 
- Build based on gin-vue-admin 
- Time : 1715432289000 */
-System.register(["./087AC4D233B64EB0index-legacy.js"],(function(e,t){"use strict";var r;return{setters:[function(e){r=e.t}],execute:function(){e("c",(function(e){return r({url:"/CloudSpeaker/createAppCloudSpeaker",method:"post",data:e})})),e("a",(function(e){return r({url:"/CloudSpeaker/deleteAppCloudSpeaker",method:"delete",params:e})})),e("d",(function(e){return r({url:"/CloudSpeaker/deleteAppCloudSpeakerByIds",method:"delete",params:e})})),e("u",(function(e){return r({url:"/CloudSpeaker/updateAppCloudSpeaker",method:"put",data:e})})),e("f",(function(e){return r({url:"/CloudSpeaker/findAppCloudSpeaker",method:"get",params:e})})),e("g",(function(e){return r({url:"/CloudSpeaker/getAppCloudSpeakerList",method:"get",params:e})}))}}}));
