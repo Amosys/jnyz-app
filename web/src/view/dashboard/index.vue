@@ -24,10 +24,11 @@
                 </el-tab-pane>
               </span>
               <el-row>
-                <el-col  :xs="24" :sm="16" :xl="16">
+                <el-col  :xs="24" :sm="activeName === 'deposit' ? 16 : 24" :xl="activeName === 'deposit' ? 16 : 24">
+                  {{ activeName }}
                   <ChartLine :detail=curDetail />
                 </el-col>
-                <el-col :xs="24" :sm="8" :xl="8">
+                <el-col v-if="activeName === 'deposit'" :xs="24" :sm="8" :xl="8">
                   <ChartTable />
                 </el-col>
               </el-row>
@@ -109,7 +110,7 @@ const detailData = ref([
     }
   }
 ])
-const activeName = ref('存款')
+const activeName = ref('deposit')
 const curTabIndex = ref(0)
 const curDetail = ref({})
 
@@ -450,16 +451,13 @@ const getDetailData = async(startDate, endDate) => {
     detailList.push(det)
   }
   detailData.value = detailList
-  activeName.value = detailData.value[curTabIndex.value].name
   curDetail.value = detailData.value[curTabIndex.value].detail
   console.log(detailData.value)
 }
 
 const tabChange = (tab) => {
   curTabIndex.value = tab.index
-  activeName.value = detailData.value[tab.index].name
   curDetail.value = detailData.value[tab.index].detail
-  console.log(curDetail.value)
 }
 const institutionChange = async(i) => {
   console.log(i)

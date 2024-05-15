@@ -10,6 +10,7 @@
 import * as echarts from 'echarts'
 import { nextTick, onMounted, onUnmounted, ref, watchEffect, watch} from 'vue'
 import { useWindowResize } from '@/hooks/use-windows-resize'
+import elementResizeDetectorMaker from 'element-resize-detector' // 尺寸监听组件
 
 export default{
   name: 'ChartLine',
@@ -52,6 +53,13 @@ export default{
       chart = null
     })
 
+    useWindowResize(() => {
+      if (!chart) {
+        return
+      }
+      chart.resize()
+    })
+
     const numberToDate = (dt) =>{
       var str = dt.toString()
       return str.slice(0, 4) + '/' + str.slice(4, 6) + '/' + str.slice(6, 8);
@@ -60,8 +68,16 @@ export default{
       if (chart) {
         chart = null
       }
-      chart = echarts.init(document.getElementById('echart'))
+      var ct = document.getElementById('echart')
+      chart = echarts.init(ct)
       
+      let erd  = elementResizeDetectorMaker({
+        strategy: "scroll",
+        callOnAdd: true,
+      })
+      erd.listenTo(ct, function(element){
+        chart.resize()
+      })
     }
     const setOptions = () => {
       var dataAxis = []
