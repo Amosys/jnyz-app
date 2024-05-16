@@ -25,7 +25,6 @@
               </span>
               <el-row>
                 <el-col  :xs="24" :sm="activeName === 'deposit' ? 16 : 24" :xl="activeName === 'deposit' ? 16 : 24">
-                  {{ activeName }}
                   <ChartLine :detail=curDetail />
                 </el-col>
                 <el-col v-if="activeName === 'deposit'" :xs="24" :sm="8" :xl="8">
