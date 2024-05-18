@@ -8,6 +8,13 @@ export const getInstitutionList = (data) => {
   })
 }
 
+export const findInstitution = (params) => {
+  return service({
+    url: '/institution/findInstitution',
+    method: 'get',
+    params
+  })
+}
 // @Summary 删除机构
 // @Security ApiKeyAuth
 // @accept application/json

@@ -98,8 +98,8 @@ func (institutionService *InstitutionService) GetInstitutionInfoList(info reques
 //@param: inst model.SysInstitution
 //@return: sa system.SysInstitution, err error
 
-func (institutionService *InstitutionService) GetInstitutionInfo(inst system.SysInstitution) (sa system.SysInstitution, err error) {
-	err = global.GVA_DB.Where("institution_id = ?", inst.InstitutionId).First(&sa).Error
+func (institutionService *InstitutionService) GetInstitutionInfo(institutionId uint) (sa system.SysInstitution, err error) {
+	err = global.GVA_DB.Where("institution_id = ?", institutionId).First(&sa).Error
 	return sa, err
 }
 

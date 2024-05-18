@@ -43,7 +43,7 @@ func (api *DataDepositSubApi) FindDepositSub(c *gin.Context) {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
 	} else {
-		response.OkWithData(gin.H{"reDepositSub": reDepositSub}, c)
+		response.OkWithData(gin.H{"reDeposit": reDepositSub}, c)
 	}
 }
 

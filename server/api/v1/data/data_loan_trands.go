@@ -46,7 +46,7 @@ func (api *DataLoanTrandsApi) FindLoanTrands(c *gin.Context) {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
 	} else {
-		response.OkWithData(gin.H{"reLoanTrands": reLoanTrands}, c)
+		response.OkWithData(gin.H{"reLoan": reLoanTrands}, c)
 	}
 }
 

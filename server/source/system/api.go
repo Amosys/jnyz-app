@@ -77,6 +77,7 @@ func (i *initApi) InitializeData(ctx context.Context) (context.Context, error) {
 		{ApiGroup: "机构", Method: "POST", Path: "/institution/deleteInstitution", Description: "删除机构"},
 		{ApiGroup: "机构", Method: "PUT", Path: "/institution/updateInstitution", Description: "更新机构信息"},
 		{ApiGroup: "机构", Method: "POST", Path: "/institution/getInstitutionList", Description: "获取机构列表"},
+		{ApiGroup: "机构", Method: "GET", Path: "/institution/findInstitution", Description: "获取机构信息"},
 
 		{ApiGroup: "casbin", Method: "POST", Path: "/casbin/updateCasbin", Description: "更改角色api权限"},
 		{ApiGroup: "casbin", Method: "POST", Path: "/casbin/getPolicyPathByAuthorityId", Description: "获取权限列表"},

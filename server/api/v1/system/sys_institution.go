@@ -5,6 +5,7 @@ import (
 	"jnyz-app/server/model/common/request"
 	"jnyz-app/server/model/common/response"
 	"jnyz-app/server/model/system"
+	systemReq "jnyz-app/server/model/system/request"
 	systemRes "jnyz-app/server/model/system/response"
 	"jnyz-app/server/utils"
 
@@ -103,6 +104,36 @@ func (a *InstitutionApi) UpdateInstitution(c *gin.Context) {
 		return
 	}
 	response.OkWithDetailed(systemRes.SysInstitutionResponse{Institution: institution}, "更新成功", c)
+}
+
+// GetApiById
+// @Tags      SysInstitution
+// @Summary   根据InstitutionId获取Institution
+// @Security  ApiKeyAuth
+// @accept    application/json
+// @Produce   application/json
+// @Param     data  body      request.GetById                                   true  "根据id获取Institution"
+// @Success   200   {object}  response.Response{data=systemRes.SysAPIResponse}  "根据id获取Institution,返回包括Institution详情"
+// @Router    /Institution/getApiById [post]
+func (s *InstitutionApi) GetInstitutionById(c *gin.Context) {
+	var idInfo systemReq.GetInstitutionById
+	err := c.ShouldBindQuery(&idInfo)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	err = utils.Verify(idInfo, utils.IdVerify)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	Institution, err := InstitutionService.GetInstitutionInfo(idInfo.InstitutionId)
+	if err != nil {
+		global.GVA_LOG.Error("获取失败!", zap.Error(err))
+		response.FailWithMessage("获取失败", c)
+		return
+	}
+	response.OkWithDetailed(systemRes.SysInstitutionResponse{Institution: Institution}, "获取成功", c)
 }
 
 // GetInstitutionList

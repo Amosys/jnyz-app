@@ -1,4 +1,5 @@
 import { login, getUserInfo, setSelfInfo } from '@/api/user'
+import { findInstitution } from '@/api/institution'
 import { jsonInBlacklist } from '@/api/jwt'
 import router from '@/router/index'
 import { ElLoading, ElMessage } from 'element-plus'
@@ -21,9 +22,13 @@ export const useUserStore = defineStore('user', () => {
     activeColor: 'var(--el-color-primary)',
     baseColor: '#fff'
   })
+  const institutionInfo = ref({})
   const token = ref(window.localStorage.getItem('token') || cookie.get('x-token') || '')
   const setUserInfo = (val) => {
     userInfo.value = val
+  }
+  const setInstitutionInfo = (val) => {
+    institutionInfo.value = val
   }
 
   const setToken = (val) => {
@@ -51,6 +56,14 @@ export const useUserStore = defineStore('user', () => {
     }
     return res
   }
+  /* 获取机构信息 */
+  const GetInstitutionInfo = async() => {
+    const res = await findInstitution(userInfo.value.institutionId)
+    if (res.code === 0) {
+      setInstitutionInfo(res.data.userInfo)
+    }
+    return res
+  }
   /* 登录*/
   const LoginIn = async(loginInfo) => {
     loadingInstance.value = ElLoading.service({
@@ -62,6 +75,7 @@ export const useUserStore = defineStore('user', () => {
       if (res.code === 0) {
         setUserInfo(res.data.user)
         setToken(res.data.token)
+        GetInstitutionInfo()
         const routerStore = useRouterStore()
         await routerStore.SetAsyncRouter()
         const asyncRouters = routerStore.asyncRouters
@@ -148,9 +162,11 @@ export const useUserStore = defineStore('user', () => {
   return {
     userInfo,
     token,
+    institutionInfo,
     NeedInit,
     ResetUserInfo,
     GetUserInfo,
+    GetInstitutionInfo,
     LoginIn,
     LoginOut,
     changeSideMode,

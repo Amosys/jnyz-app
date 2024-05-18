@@ -67,6 +67,7 @@ func (i *initCasbin) InitializeData(ctx context.Context) (context.Context, error
 		{Ptype: "p", V0: "100", V1: "/institution/deleteInstitution", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/institution/updateInstitution", V2: "PUT"},
 		{Ptype: "p", V0: "100", V1: "/institution/getInstitutionList", V2: "POST"},
+		{Ptype: "p", V0: "100", V1: "/institution/findInstitution", V2: "GET"},
 
 		{Ptype: "p", V0: "100", V1: "/menu/getMenu", V2: "POST"},
 		{Ptype: "p", V0: "100", V1: "/menu/getMenuList", V2: "POST"},

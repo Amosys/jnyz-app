@@ -46,7 +46,7 @@ func (api *DataDepositDetailSaveApi) FindDepositDetailSave(c *gin.Context) {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
 	} else {
-		response.OkWithData(gin.H{"reDepositDetailSave": reDepositDetailSave}, c)
+		response.OkWithData(gin.H{"reDeposit": reDepositDetailSave}, c)
 	}
 }
 

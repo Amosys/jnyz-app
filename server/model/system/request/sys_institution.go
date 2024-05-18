@@ -8,3 +8,7 @@ import (
 type AddInstitutionInfo struct {
 	Institutions []system.SysInstitution `json:"institutions"`
 }
+
+type GetInstitutionById struct {
+	InstitutionId uint `json:"institutionId"`
+}

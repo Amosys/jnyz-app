@@ -46,7 +46,7 @@ func (api *DataLoanDetailCorpApi) FindLoanDetailCorp(c *gin.Context) {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
 	} else {
-		response.OkWithData(gin.H{"reLoanDetailCorp": reLoanDetailCorp}, c)
+		response.OkWithData(gin.H{"reLoan": reLoanDetailCorp}, c)
 	}
 }
 
