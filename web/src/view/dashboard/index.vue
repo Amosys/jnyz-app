@@ -166,190 +166,159 @@ const getCardData = async() => {
 
 const getDetailData = async(startDate, endDate) => {
   const color = ['#188df0', '#52c41a', '#f5222d']
-  var detailList = []
-  console.log(curInstitutionInfo.value, curInstitution)
-  console.log(detailList)
+  let detailList = []
   if (1 == selInstitution.value.institutionLevel){
-    var res = await getDALDataList("depositBank", 
-      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
-    if (res.code == 0 && res.data.total > 0){
-      var det = {
-          label: '存款',
-          name: 'deposit',
-          detail: {
-            dayCount: res.data.total,
-            seriesCount: 2,
-            lable: ['储蓄存款', '对公存款'],
-            color: color,
-            data: []
-          }
-        }
-
-      var val = [[], []]
-      for (var l in res.data.list){
-        val[0].push({
-          date: res.data.list[l].DT,
-          val: res.data.list[l].SDBAL
-        })
-        val[1].push({
-          date: res.data.list[l].DT,
-          val: res.data.list[l].CDBAL
-        })
-      }
-      det.detail.data.push(val[0])
-      det.detail.data.push(val[1])
-      detailList.push(det)
+    deposit = fetchDepositDataBank(startDate, endDate)
+    if (deposit.list){
+      detailList.push({label: '存款', name:'deposit', detail:{
+        dayCount: deposit.list.length,
+        seriesCount: 2,
+        lable: ['储蓄存款', '对公存款'],
+        color: color,
+        data: [deposit.list.map(function(obj){
+          return {date: obj.date, val: obj.save.total}
+        }), deposit.list.map(function(obj){
+          return {date: obj.date, val: obj.corp.total}
+        })],
+      }})
     }
-    res = await getDALDataList("loanBank", 
-      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
-    if (res.code == 0 && res.data.total > 0){
-      var det = {
-          label: '贷款',
-          name: 'loan',
-          detail: {
-            dayCount: 0,
-            seriesCount: 0,
-            lable: [],
-            color: [],
-            data: []
-          }
-        }
-      det.detail.dayCount = res.data.total
-      det.detail.seriesCount = 2
-      det.detail.lable = ['对公贷款', '个人贷款']
-      det.detail.color = color
-
-      var val = [[], []]
-      for (var l in res.data.list){
-        val[0].push({
-          date: res.data.list[l].DT,
-          val: res.data.list[l].LBAL_CORP
-        })
-        val[1].push({
-          date: res.data.list[l].DT,
-          val: res.data.list[l].LBAL_PERS
-        })
-      }
-      det.detail.data.push(val[0])
-      det.detail.data.push(val[1])
-      detailList.push(det)
+    loan = fetchLoanDataBank(startDate, endDate)
+    if (loan.list){
+      detailList.push({label: '贷款', name:'loan', detail:{
+        dayCount: deposit.list.length,
+        seriesCount: 2,
+        lable: ['对公贷款', '个人贷款'],
+        color: color,
+        data: [deposit.list.map(function(obj){
+          return {date: obj.date, val: obj.corp.total}
+        }), deposit.list.map(function(obj){
+          return {date: obj.date, val: obj.pers.total}
+        })],
+      }})
     }
   }
   else{
-    const depositList = [
-      {type: 'depositDetailCorp', lable: '对公存款'},
-      {type: 'depositDetailSave', lable: '储蓄存款'},
-      {type: 'depositDetailCur', lable: '活期存款'}
-    ]
-    const loanList = [
-      {type: 'loanDetailCorp', lable: '对公贷款'},
-      {type: 'loanDetailPers', lable: '个人贷款'},
-    ]
+    let depositCorp = await fetchDepositDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
+    let depositSave = await fetchDepositDataByBranch('DetailSave', selInstitutionId.value, startDate, endDate)
+    let depositCur = await fetchDepositDataByBranch('DetailCur', selInstitutionId.value, startDate, endDate)
+    let loanCorp = await fetchLoanDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
+    let loanPers = await fetchLoanDataByBranch('DetailPers', selInstitutionId.value, startDate, endDate)
 
-    //存款
-    var det = {
-      label: '存款',
-      name: 'deposit',
-      detail: {
-        dayCount: 0,
-        seriesCount: 0,
-        lable: [],
-        color: [],
-        data: []
-      }
+    if (depositCorp.list && depositSave.list && depositSave.list){
+      detailList.push({label: '存款', name:'deposit', detail:{
+        dayCount: depositCorp.list.length,
+        seriesCount: 3,
+        lable: ['对公存款', '储蓄存款', '活期存款'],
+        color: color,
+        data: [depositCorp.list.map(function(obj){
+          return {date: obj.date, val: obj.total}
+        }), depositSave.list.map(function(obj){
+          return {date: obj.date, val: obj.total}
+        }), depositCur.list.map(function(obj){
+          return {date: obj.date, val: obj.total}
+        })],
+      }})
     }
-    for (var dep in depositList){
-      var res = await getDALDataList(depositList[dep].type, 
-        {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
-      if (res.code == 0 && res.data.total > 0){
-        det.detail.dayCount = res.data.total
-        det.detail.seriesCount += 1
-        det.detail.lable.push(depositList[dep].lable)
-        det.detail.color.push(color[dep])
-
-        var val = []
-        for (var l in res.data.list){
-          val.push({
-            date: res.data.list[l].DT,
-            val: res.data.list[l].DBAL
-          })
-        }
-        det.detail.data.push(val)
-      }
+    if (loanCorp.list && loanPers.list){
+      detailList.push({label: '贷款', name:'loan', detail:{
+        dayCount: loanCorp.list.length,
+        seriesCount: 2,
+        lable: ['对公贷款', '个人贷款'],
+        color: color,
+        data: [loanCorp.list.map(function(obj){
+          return {date: obj.date, val: obj.total}
+        }), loanPers.list.map(function(obj){
+          return {date: obj.date, val: obj.total}
+        })],
+      }})
     }
-    detailList.push(det)
-    //贷款
-    det = {
-      label: '贷款',
-      name: 'loan',
-      detail: {
-        dayCount: 0,
-        seriesCount: 0,
-        lable: [],
-        color: [],
-        data: []
-      }
-    }
-    for (var loan in loanList){
-      var res = await getDALDataList(loanList[loan].type, 
-        {startDate: startDate, endDate: endDate, branch: curInstitution.value, page: 1, pageSize: 999})
-      if (res.code == 0 && res.data.total > 0){
-        det.detail.dayCount = res.data.total
-        det.detail.seriesCount += 1
-        det.detail.lable.push(loanList[loan].lable)
-        det.detail.color.push(color[loan])
-
-        var val = []
-        for (var l in res.data.list){
-          val.push({
-            date: res.data.list[l].DT,
-            val: res.data.list[l].LBAL
-          })
-        }
-        det.detail.data.push(val)
-      }
-    }
-    detailList.push(det)
   }
   detailData.value = detailList
   curDetail.value = detailData.value[curTabIndex.value].detail
-  console.log(detailData.value)
 }
 
-const fetchDepositDataByBranch = async(type, branch) =>{
-  let res = await findDALData(`deposit${type}`, {branch: branch})
-  if (res.code === 0){
-    const deposit = res.data.reDeposit
-    return {total: deposit.DBAL, c2d: deposit.DBAL_C2D, c2by: deposit.DBAL_C2BY}
+const fetchDepositDataByBranch = async(type, branch, startDate = 0, endDate = 0) =>{
+  if (startDate && endDate){
+    let res = await getDALDataList(`deposit${type}`,
+      {startDate: startDate, endDate: endDate, branch: branch, page: 1, pageSize: 999})
+    if (res.code === 0){
+      const deposit = res.data
+      return {list: deposit.list.map(function(obj){
+        return {date: obj.DT, total: obj.DBAL, c2d: obj.DBAL_C2D, c2by: obj.DBAL_C2BY}
+      })}
+    }
+  }else {
+    let res = await findDALData(`deposit${type}`, {branch: branch})
+    if (res.code === 0){
+      const deposit = res.data.reDeposit
+      return {total: deposit.DBAL, c2d: deposit.DBAL_C2D, c2by: deposit.DBAL_C2BY}
+    }
   }
   return {}
 }
-const fetchDepositDataBank = async() =>{
-  let res = await findDALData(`depositBank`, {})
-  if (res.code === 0){
-    const deposit = res.data.reDeposit
-    return {all:{total: deposit.DBAL, c2d: deposit.DBAL_C2D, c2by: deposit.DBAL_C2BY},
-            save: {total: deposit.SDBAL, c2d: deposit.SDBAL_C2D, c2by: deposit.SDBAL_C2BY},
-            corp: {total: deposit.CDBAL, c2d: deposit.CDBAL_C2D, c2by: deposit.CDBAL_C2BY}}
+const fetchDepositDataBank = async(startDate = 0, endDate = 0) =>{
+  if (startDate && endDate){
+    let res = await getDALDataList(`depositBank`, 
+      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
+    if (res.code === 0){
+      const deposit = res.data
+      return {list: deposit.list.map(function(obj){
+        return {date: obj.DT, all:{total: obj.DBAL, c2d: obj.DBAL_C2D, c2by: obj.DBAL_C2BY},
+                save: {total: obj.SDBAL, c2d: obj.SDBAL_C2D, c2by: obj.SDBAL_C2BY},
+                corp: {total: obj.CDBAL, c2d: obj.CDBAL_C2D, c2by: obj.CDBAL_C2BY}}
+      })}
+    }
+  }else{
+    let res = await findDALData(`depositBank`, {})
+    if (res.code === 0){
+      const deposit = res.data.reDeposit
+      return {all:{total: deposit.DBAL, c2d: deposit.DBAL_C2D, c2by: deposit.DBAL_C2BY},
+              save: {total: deposit.SDBAL, c2d: deposit.SDBAL_C2D, c2by: deposit.SDBAL_C2BY},
+              corp: {total: deposit.CDBAL, c2d: deposit.CDBAL_C2D, c2by: deposit.CDBAL_C2BY}}
+    }
   }
   return {}
 }
 
-const fetchLoanDataByBranch = async(type, branch) =>{
-  let res = await findDALData(`loan${type}`, {branch: branch})
-  if (res.code === 0){
-    const loan = res.data.reLoan
-    return {total: loan.LBAL, c2d: loan.LBAL_C2D, c2by: loan.LBAL_C2BY}
+const fetchLoanDataByBranch = async(type, branch, startDate = 0, endDate = 0) =>{
+  if (startDate && endDate){
+    let res = await getDALDataList(`loan${type}`,
+      {startDate: startDate, endDate: endDate, branch: branch, page: 1, pageSize: 999})
+    if (res.code === 0){
+      const loan = res.data
+      return {list: loan.list.map(function(obj){
+        return {date: obj.DT, total: obj.LBAL, c2d: obj.LBAL_C2D, c2by: obj.LBAL_C2BY}
+      })}
+    }
+  }else {
+    let res = await findDALData(`loan${type}`, {branch: branch})
+    if (res.code === 0){
+      const loan = res.data.reLoan
+      return {total: loan.LBAL, c2d: loan.LBAL_C2D, c2by: loan.LBAL_C2BY}
+    }
   }
   return {}
 }
-const fetchLoanDataBank = async() =>{
-  let res = await findDALData(`loanBank`, {})
-  if (res.code === 0){
-    const loan = res.data.reLoant
-    return {all:{total: deposit.LBAL, c2d: deposit.LBAL_C2D, c2by: deposit.LBAL_C2BY},
-            corp: {total: deposit.LBAL_CORP, c2d: deposit.LBAL_CORP_C2D, c2by: deposit.LBAL_CORP_C2BY},
-            pers: {total: deposit.LBAL_PERS, c2d: deposit.LBAL_PERS_C2D, c2by: deposit.LBAL_PERS_C2BY}}
+const fetchLoanDataBank = async(startDate = 0, endDate = 0) =>{
+  if (startDate && endDate){
+    let res = await getDALDataList(`loanBank`, 
+      {startDate: startDate, endDate: endDate, page: 1, pageSize: 999})
+    if (res.code === 0){
+      const loan = res.data
+      return {list: loan.list.map(function(obj){
+        return {date: obj.DT, all:{total: obj.LBAL, c2d: obj.LBAL_C2D, c2by: obj.LBAL_C2BY},
+                corp: {total: obj.LBAL_CORP, c2d: obj.LBAL_CORP_C2D, c2by: obj.LBAL_CORP_C2BY},
+                pers: {total: obj.LBAL_PERS, c2d: obj.LBAL_PERS_C2D, c2by: obj.LBAL_PERS_C2BY}}
+      })}
+    }
+  }else{
+    let res = await findDALData(`loanBank`, {})
+    if (res.code === 0){
+      const loan = res.data.reLoant
+      return {all:{total: loan.LBAL, c2d: loan.LBAL_C2D, c2by: loan.LBAL_C2BY},
+              corp: {total: loan.LBAL_CORP, c2d: loan.LBAL_CORP_C2D, c2by: loan.LBAL_CORP_C2BY},
+              pers: {total: loan.LBAL_PERS, c2d: deloanposit.LBAL_PERS_C2D, c2by: loan.LBAL_PERS_C2BY}}
+    }
   }
   return {}
 }
@@ -361,8 +330,7 @@ const tabChange = (tab) => {
 const institutionChange = async(i) => {
   if (i === useUserStore.userInfo.institutionId){
     selInstitution.value = useUserStore.institutionInfo
-  }
-  else{
+  }else{
     for (var ins in institutionList.value){
       if (i == institutionList.value[ins].institutionId){
         selInstitution.value = institutionList.value[ins]
