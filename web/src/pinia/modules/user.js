@@ -58,9 +58,9 @@ export const useUserStore = defineStore('user', () => {
   }
   /* 获取机构信息 */
   const GetInstitutionInfo = async() => {
-    const res = await findInstitution(userInfo.value.institutionId)
+    const res = await findInstitution({institutionId: userInfo.value.institutionId})
     if (res.code === 0) {
-      setInstitutionInfo(res.data.userInfo)
+      setInstitutionInfo(res.data.institution)
     }
     return res
   }
@@ -75,7 +75,6 @@ export const useUserStore = defineStore('user', () => {
       if (res.code === 0) {
         setUserInfo(res.data.user)
         setToken(res.data.token)
-        GetInstitutionInfo()
         const routerStore = useRouterStore()
         await routerStore.SetAsyncRouter()
         const asyncRouters = routerStore.asyncRouters

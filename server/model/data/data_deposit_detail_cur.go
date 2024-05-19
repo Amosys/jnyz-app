@@ -13,5 +13,5 @@ type DataDepositDetailCur struct {
 }
 
 func (DataDepositDetailCur) TableName() string {
-	return "DATA_CUR_DEPOSIT"
+	return "DATA_DEPOSIT_DETAIL_CUR"
 }

@@ -2,11 +2,11 @@
   <div class="page">
     <el-row :gutter="12">
       <el-col v-for="card in toolCards" :sm="24" :md="6" :xl="6"  :style="{ margin: '12px 0px'}">
-        <ChartCard :title=card.title :total=card.total :pValue=card.totalP>
+        <ChartCard :title=card.title :total=card.total>
           <div>
-            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d :pValue=card.c2dP>
+            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d>
             </trend>
-            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by :pValue=card.c2byP>
+            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by>
             </trend>
           </div>
           <template slot="footer">较年初
@@ -90,6 +90,9 @@ const disabledDate =  (time) => {
   return time.getTime() >= Date.now() - 8.64e7
 }
 
+userStore.GetInstitutionInfo()
+
+const institutionInfo = ref({})
 const institutionList = ref([])
 const institutionOption = ref([])
 const selInstitutionId = ref(userStore.institutionInfo.institutionId)
@@ -106,6 +109,7 @@ const datePickerChange = (date) =>{
 const getInstitution = async() =>{
   var res = await getInstitutionList({page: 1, pageSize: 999})
   let option = {}
+
   if (userStore.institutionInfo.institutionLevel === 1) {
     option = { value: userStore.institutionInfo.institutionId, label: '全行' };
     institutionSelShow.value = true;
@@ -133,33 +137,33 @@ const setInstitutionOptions = (InstitutionData, optionsData) => {
 };
 
 const getCardData = async() => {
-  if (1 == userStore.institutionInfo.value.institutionLevel){
-    let deposit = await fetchDepositDataBank()
+  if (1 == userStore.institutionInfo.institutionLevel){
+    let deposit = await await fetchDepositDataBank()
     if (deposit){
       toolCards.value.push({title: '各项存款', total: `${deposit.all.total}亿元`, c2d: `${deposit.all.c2d}万元`, c2by: `${deposit.all.c2by}亿元`})
       toolCards.value.push({title: '储蓄存款', total: `${deposit.save.total}亿元`, c2d: `${deposit.save.c2d}万元`, c2by: `${deposit.save.c2by}亿元`})
       toolCards.value.push({title: '对公存款', total: `${deposit.corp.total}亿元`, c2d: `${deposit.corp.c2d}万元`, c2by: `${deposit.corp.c2by}亿元`})
     }
-    let loan = await fetchLoanDataBank()
+    let loan = await await fetchLoanDataBank()
     if (loan){
       toolCards.value.push({title: '各项贷款', total: `${loan.all.total}亿元`, c2d: `${loan.all.c2d}亿元`, c2by: `${loan.all.c2by}亿元`})
     }
     console.log(toolCards.value)
   }
   else{
-    let deposit = fetchDepositDataByBranch('Sub', userStore.userInfo.institutionId)
+    let deposit = await fetchDepositDataByBranch('Sub', userStore.userInfo.institutionId)
     if (deposit){
       toolCards.value.push({title: '各项存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
     }
-    deposit = fetchDepositDataByBranch('DetailSave', userStore.userInfo.institutionId)
+    deposit = await fetchDepositDataByBranch('DetailSave', userStore.userInfo.institutionId)
     if (deposit){
       toolCards.value.push({title: '储蓄存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
     }
-    deposit = fetchDepositDataByBranch('DetailCorp', userStore.userInfo.institutionId)
+    deposit = await fetchDepositDataByBranch('DetailCorp', userStore.userInfo.institutionId)
     if (deposit){
       toolCards.value.push({title: '对公存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
     }
-    let loan = fetchLoanDataByBranch('Sub', userStore.userInfo.institutionId)
+    let loan = await fetchLoanDataByBranch('Sub', userStore.userInfo.institutionId)
     toolCards.value.push({title: '各项贷款', total: `${loan.total}万元`, c2d: `${loan.c2d}万元`, c2by: `${loan.c2by}万元`})
   }
 }
@@ -168,7 +172,8 @@ const getDetailData = async(startDate, endDate) => {
   const color = ['#188df0', '#52c41a', '#f5222d']
   let detailList = []
   if (1 == selInstitution.value.institutionLevel){
-    deposit = fetchDepositDataBank(startDate, endDate)
+    let deposit = await fetchDepositDataBank(startDate, endDate)
+    console.log(deposit.list)
     if (deposit.list){
       detailList.push({label: '存款', name:'deposit', detail:{
         dayCount: deposit.list.length,
@@ -182,8 +187,9 @@ const getDetailData = async(startDate, endDate) => {
         })],
       }})
     }
-    loan = fetchLoanDataBank(startDate, endDate)
-    if (loan.list){
+    let loan = await fetchLoanDataBank(startDate, endDate)
+    console.log(loan)
+    if (0){
       detailList.push({label: '贷款', name:'loan', detail:{
         dayCount: deposit.list.length,
         seriesCount: 2,
@@ -198,11 +204,11 @@ const getDetailData = async(startDate, endDate) => {
     }
   }
   else{
-    let depositCorp = await fetchDepositDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
-    let depositSave = await fetchDepositDataByBranch('DetailSave', selInstitutionId.value, startDate, endDate)
-    let depositCur = await fetchDepositDataByBranch('DetailCur', selInstitutionId.value, startDate, endDate)
-    let loanCorp = await fetchLoanDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
-    let loanPers = await fetchLoanDataByBranch('DetailPers', selInstitutionId.value, startDate, endDate)
+    let depositCorp = await await fetchDepositDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
+    let depositSave = await await fetchDepositDataByBranch('DetailSave', selInstitutionId.value, startDate, endDate)
+    let depositCur = await await fetchDepositDataByBranch('DetailCur', selInstitutionId.value, startDate, endDate)
+    let loanCorp = await await fetchLoanDataByBranch('DetailCorp', selInstitutionId.value, startDate, endDate)
+    let loanPers = await await fetchLoanDataByBranch('DetailPers', selInstitutionId.value, startDate, endDate)
 
     if (depositCorp.list && depositSave.list && depositSave.list){
       detailList.push({label: '存款', name:'deposit', detail:{
@@ -234,7 +240,8 @@ const getDetailData = async(startDate, endDate) => {
     }
   }
   detailData.value = detailList
-  curDetail.value = detailData.value[curTabIndex.value].detail
+  curDetail.value = detailData.value[curTabIndex.value]
+  console.log(detailData.value, curDetail.value)
 }
 
 const fetchDepositDataByBranch = async(type, branch, startDate = 0, endDate = 0) =>{
@@ -314,10 +321,10 @@ const fetchLoanDataBank = async(startDate = 0, endDate = 0) =>{
   }else{
     let res = await findDALData(`loanBank`, {})
     if (res.code === 0){
-      const loan = res.data.reLoant
+      const loan = res.data.reLoan
       return {all:{total: loan.LBAL, c2d: loan.LBAL_C2D, c2by: loan.LBAL_C2BY},
               corp: {total: loan.LBAL_CORP, c2d: loan.LBAL_CORP_C2D, c2by: loan.LBAL_CORP_C2BY},
-              pers: {total: loan.LBAL_PERS, c2d: deloanposit.LBAL_PERS_C2D, c2by: loan.LBAL_PERS_C2BY}}
+              pers: {total: loan.LBAL_PERS, c2d: loan.LBAL_PERS_C2D, c2by: loan.LBAL_PERS_C2BY}}
     }
   }
   return {}
@@ -328,8 +335,8 @@ const tabChange = (tab) => {
   curDetail.value = detailData.value[tab.index].detail
 }
 const institutionChange = async(i) => {
-  if (i === useUserStore.userInfo.institutionId){
-    selInstitution.value = useUserStore.institutionInfo
+  if (i === userStore.userInfo.institutionId){
+    selInstitution.value = userStore.institutionInfo
   }else{
     for (var ins in institutionList.value){
       if (i == institutionList.value[ins].institutionId){

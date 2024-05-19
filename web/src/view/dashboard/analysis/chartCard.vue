@@ -13,7 +13,7 @@
         </div>
         <div class="total">
             <slot name="total">
-            <span>{{ typeof total === 'function' && total() || total}}{{ pValue }}</span>
+            <span>{{ typeof total === 'function' && total() || total}}</span>
             </slot>
         </div>
         </div>
@@ -39,17 +39,13 @@ export default {
       default: ''
     },
     total: {
-      type: [Function, Number, String],
+      type: String,
       required: false,
       default: null
     },
     loading: {
       type: Boolean,
       default: false
-    },
-    pValue: {
-      type: String,
-      default: '亿元'
     }
   }
 }

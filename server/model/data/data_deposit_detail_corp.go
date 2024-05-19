@@ -13,5 +13,5 @@ type DataDepositDetailCorp struct {
 }
 
 func (DataDepositDetailCorp) TableName() string {
-	return "DATA_COR_DEPOSIT"
+	return "DATA_DEPOSIT_DETAIL_CORP"
 }

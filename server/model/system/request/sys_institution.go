@@ -10,5 +10,5 @@ type AddInstitutionInfo struct {
 }
 
 type GetInstitutionById struct {
-	InstitutionId uint `json:"institutionId"`
+	InstitutionId uint `json:"institutionId" form:"institutionId"`
 }

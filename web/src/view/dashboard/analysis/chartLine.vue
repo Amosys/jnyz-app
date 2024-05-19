@@ -103,7 +103,6 @@ export default{
             },
           },
           data: data,
-          stack: 'x',
         })
       }
       console.log(series)

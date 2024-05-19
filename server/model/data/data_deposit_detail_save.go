@@ -13,5 +13,5 @@ type DataDepositDetailSave struct {
 }
 
 func (DataDepositDetailSave) TableName() string {
-	return "DATA_SAV_DEPOSIT"
+	return "DATA_DEPOSIT_DETAIL_SAVE"
 }

@@ -2,7 +2,7 @@
     <div class="chart-trend">
       {{ term }}
       <span v-if="isPer">{{ percentage }}%</span>
-      <span v-if="!isPer">{{ value }}{{ pValue }}</span>
+      <span v-if="!isPer">{{ value }}</span>
       <span :class="['trend-icon', flag]">
         <el-icon>
             <component :is="'caret' + trend" />
@@ -30,12 +30,8 @@
         default: 0
       },
       value: {
-        type: Number,
-        default: 0
-      },
-      pValue: {
         type: String,
-        default: '元'
+        default: 0
       }
     },
     data () {
@@ -44,7 +40,7 @@
         f = this.percentage >= 0 ? 'up' : 'down'
       }
       else {
-        f = this.value >= 0 ? 'up' : 'down'
+        f = Number(this.value) >= 0 ? 'up' : 'down'
       }
       return {
         trend: f == 'up' ? "Top" : "Bottom",

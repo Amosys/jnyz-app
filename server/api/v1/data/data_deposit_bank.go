@@ -1,7 +1,6 @@
 package data
 
 import (
-	"fmt"
 	"jnyz-app/server/global"
 	"jnyz-app/server/model/common/response"
 	"jnyz-app/server/model/data"
@@ -41,7 +40,6 @@ func (api *DataDepositBankApi) FindDepositBank(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(utils.GetUserInfo(c))
 	if err := DataDALBankService.GetDALBank(DepositGet.Date, &reDepositBank); err != nil {
 		global.GVA_LOG.Error("查询失败!", zap.Error(err))
 		response.FailWithMessage("查询失败", c)
