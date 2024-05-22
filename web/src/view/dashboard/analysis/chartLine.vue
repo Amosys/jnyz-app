@@ -83,32 +83,29 @@ export default{
       var dataAxis = []
       var series = []
       var legend = []
-      console.log(props.detail)
-      for (var ser = 0; ser < props.detail.seriesCount; ser++){
+      let detail = props.detail.detail
+      for (var ser = 0; ser < detail.seriesCount; ser++){
         var data = []
-        for (var day = 0; day < props.detail.dayCount; day++){
-          data.push(props.detail.data[ser][day].val)
-        }
+        data = detail.data[ser].map(dt => (dt.val))
         series.push({
-          name: props.detail.lable[ser],
+          name: detail.lable[ser],
           type: 'bar',
-          barWidth: '40%',
+          barWidth: '15%',
+          barGap: '60%',
           itemStyle: {
             borderRadius: [1, 1, 0, 0],
-            color: props.detail.color[ser],
+            color: detail.color[ser],
           },
           emphasis: {
             itemStyle: {
-              color: props.detail.color[ser],
+              color: detail.color[ser],
             },
           },
           data: data,
         })
       }
+      dataAxis = detail.data[0].map(dt => (numberToDate(dt.date)))
       console.log(series)
-      for (var day = 0; day < props.detail.dayCount; day++){
-        dataAxis.push(numberToDate(props.detail.data[0][day].date))
-      }
 
       chart.setOption({
         grid: {

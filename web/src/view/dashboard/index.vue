@@ -90,8 +90,6 @@ const disabledDate =  (time) => {
   return time.getTime() >= Date.now() - 8.64e7
 }
 
-userStore.GetInstitutionInfo()
-
 const institutionInfo = ref({})
 const institutionList = ref([])
 const institutionOption = ref([])
@@ -110,6 +108,7 @@ const getInstitution = async() =>{
   var res = await getInstitutionList({page: 1, pageSize: 999})
   let option = {}
 
+  console.log(userStore.institutionInfo)
   if (userStore.institutionInfo.institutionLevel === 1) {
     option = { value: userStore.institutionInfo.institutionId, label: '全行' };
     institutionSelShow.value = true;
