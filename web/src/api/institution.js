@@ -55,7 +55,7 @@ export const createInstitution = (data) => {
 // @Router /institution/setUserInstitution [post]
 export const updateInstitution = (data) => {
   return service({
-    url: '/institution/setUserInstitution',
+    url: '/institution/updateInstitution',
     method: 'put',
     data
   })

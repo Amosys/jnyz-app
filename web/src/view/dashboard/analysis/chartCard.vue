@@ -13,7 +13,7 @@
         </div>
         <div class="total">
             <slot name="total">
-            <span>{{ typeof total === 'function' && total() || total}}</span>
+            <span>{{ typeof total === 'function' && total() || total}}{{ unit }}</span>
             </slot>
         </div>
         </div>
@@ -39,13 +39,17 @@ export default {
       default: ''
     },
     total: {
-      type: String,
+      type: Number,
       required: false,
       default: null
     },
     loading: {
       type: Boolean,
       default: false
+    },
+    unit: {
+      type: String,
+      default: '万元'
     }
   }
 }

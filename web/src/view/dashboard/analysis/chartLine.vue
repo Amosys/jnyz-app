@@ -26,7 +26,6 @@ export default{
         seriesCount: 3,
         lable: ['对公存款', '储蓄存款', '活期存款'],
         color: ['#188df0', '#52c41a', '#f5222d'],
-        unit:['元', '元', '元'],
         data: [
         ]
       }
@@ -84,6 +83,7 @@ export default{
       var series = []
       var legend = []
       let detail = props.detail.detail
+      console.log(detail)
       for (var ser = 0; ser < detail.seriesCount; ser++){
         var data = []
         data = detail.data[ser].map(dt => (dt.val))
@@ -105,14 +105,14 @@ export default{
         })
       }
       dataAxis = detail.data[0].map(dt => (numberToDate(dt.date)))
-      console.log(series)
 
       chart.setOption({
         grid: {
-          left: '40',
+          left: '1%',
           right: '20',
           top: '40',
           bottom: '20',
+          containLabel: true,
         },
         xAxis: {
           data: dataAxis,
@@ -132,12 +132,10 @@ export default{
             show: false,
           },
           axisLabel: {
-            textStyle: {
-              color: '#999',
-            },
+            width:'60'
           },
           scale: true,
-          name: '金额（元）'
+          name: `金额(${detail.unit})`
         },
         dataZoom: [
           {
@@ -151,7 +149,7 @@ export default{
           axisPointer: {
               type: 'shadow'
           },
-          formatter: '{a}<br/>{b}：{c}',
+          formatter: `{a}<br/>{b}：{c}${detail.unit}`,
         },
         series: series
       }, true)

@@ -54,7 +54,7 @@ func (i *initUser) InitializeData(ctx context.Context) (next context.Context, er
 			Username:      "admin",
 			Password:      adminPassword,
 			NickName:      "admin",
-			HeaderImg:     "https://qmplusimg.henrongyi.top/gva_header.jpg",
+			HeaderImg:     "/static/icon/defaultHeader.png",
 			AuthorityId:   100,
 			Phone:         "15556324021",
 			Email:         "333333333@qq.com",

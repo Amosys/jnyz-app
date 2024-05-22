@@ -2,11 +2,11 @@
   <div class="page">
     <el-row :gutter="12">
       <el-col v-for="card in toolCards" :sm="24" :md="6" :xl="6"  :style="{ margin: '12px 0px'}">
-        <ChartCard :title=card.title :total=card.total>
+        <ChartCard :title=card.title :total=card.total :unit=card.totalUnit>
           <div>
-            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d>
+            <trend :isPer=false style="margin-right: 16px;" term="较昨日" :value=card.c2d :unit=card.c2dUnit>
             </trend>
-            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by>
+            <trend :isPer=false style="margin-right: 16px;" term="较年初" :value=card.c2by :unit=card.c2byUnit>
             </trend>
           </div>
           <template slot="footer">较年初
@@ -32,31 +32,33 @@
                 </el-col>
               </el-row>
             </el-tabs> 
-            <div class="date-picker">
-              <el-date-picker
-                v-model="selDate"
-                type="daterange"
-                align="right"
-                unlink-panels
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                :append-to-body=false
-                :editable=false
-                :disabled-date=disabledDate
-                @change="datePickerChange"
-                value-format="YYYYMMDD">
-              </el-date-picker>
-            </div>
-            <div class="institution-selecter" v-if="institutionSelShow">
-              <el-select @change="institutionChange" v-model="selInstitutionId" filterable placeholder="请选择">
-                <el-option
-                  v-for="item in institutionOption"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
+            <div class="option-card">
+              <div class="date-picker">
+                <el-date-picker
+                  v-model="selDate"
+                  type="daterange"
+                  align="right"
+                  unlink-panels
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  :append-to-body=false
+                  :editable=false
+                  :disabled-date=disabledDate
+                  @change="datePickerChange"
+                  value-format="YYYYMMDD">
+                </el-date-picker>
+              </div>
+              <div class="institution-selecter" v-if="institutionSelShow">
+                <el-select @change="institutionChange" v-model="selInstitutionId" filterable placeholder="请选择">
+                  <el-option
+                    v-for="item in institutionOption"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </div>
             </div>
           </div>
         </div>
@@ -98,7 +100,6 @@ const selInstitution = ref(userStore.institutionInfo)
 const institutionSelShow = ref(false)
 
 const datePickerChange = (date) =>{
-  console.log(date)
   getDetailData(Number(date[0]), Number(date[1]))
 }
 
@@ -108,7 +109,6 @@ const getInstitution = async() =>{
   var res = await getInstitutionList({page: 1, pageSize: 999})
   let option = {}
 
-  console.log(userStore.institutionInfo)
   if (userStore.institutionInfo.institutionLevel === 1) {
     option = { value: userStore.institutionInfo.institutionId, label: '全行' };
     institutionSelShow.value = true;
@@ -139,31 +139,30 @@ const getCardData = async() => {
   if (1 == userStore.institutionInfo.institutionLevel){
     let deposit = await await fetchDepositDataBank()
     if (deposit){
-      toolCards.value.push({title: '各项存款', total: `${deposit.all.total}亿元`, c2d: `${deposit.all.c2d}万元`, c2by: `${deposit.all.c2by}亿元`})
-      toolCards.value.push({title: '储蓄存款', total: `${deposit.save.total}亿元`, c2d: `${deposit.save.c2d}万元`, c2by: `${deposit.save.c2by}亿元`})
-      toolCards.value.push({title: '对公存款', total: `${deposit.corp.total}亿元`, c2d: `${deposit.corp.c2d}万元`, c2by: `${deposit.corp.c2by}亿元`})
+      toolCards.value.push({title: '各项存款', total: deposit.all.total, totalUnit:'亿元', c2d:deposit.all.c2d, c2dUnit:'万元', c2by: deposit.all.c2by, c2byUnit:'亿元'})
+      toolCards.value.push({title: '储蓄存款', total: deposit.save.total, totalUnit:'亿元', c2d:deposit.save.c2d, c2dUnit:'万元', c2by: deposit.save.c2by, c2byUnit:'亿元'})
+      toolCards.value.push({title: '对公存款', total: deposit.corp.total, totalUnit:'亿元', c2d:deposit.corp.c2d, c2dUnit:'万元', c2by: deposit.corp.c2by, c2byUnit:'亿元'})
     }
     let loan = await await fetchLoanDataBank()
     if (loan){
-      toolCards.value.push({title: '各项贷款', total: `${loan.all.total}亿元`, c2d: `${loan.all.c2d}亿元`, c2by: `${loan.all.c2by}亿元`})
+      toolCards.value.push({title: '各项贷款', total: loan.all.total, totalUnit:'亿元', c2d: loan.all.c2d, c2dUnit:'亿元', c2by: loan.all.c2by, c2byUnit:'亿元'})
     }
-    console.log(toolCards.value)
   }
   else{
     let deposit = await fetchDepositDataByBranch('Sub', userStore.userInfo.institutionId)
     if (deposit){
-      toolCards.value.push({title: '各项存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
+      toolCards.value.push({title: '各项存款', total: deposit.total, totalUnit:'亿元', c2d: deposit.c2d, c2dUnit:'万元', c2by: deposit.c2by, c2byUnit:'万元'})
     }
     deposit = await fetchDepositDataByBranch('DetailSave', userStore.userInfo.institutionId)
     if (deposit){
-      toolCards.value.push({title: '储蓄存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
+      toolCards.value.push({title: '储蓄存款', total: deposit.total, totalUnit:'亿元', c2d: deposit.c2d, c2dUnit:'万元', c2by: deposit.c2by, c2byUnit:'万元'})
     }
     deposit = await fetchDepositDataByBranch('DetailCorp', userStore.userInfo.institutionId)
     if (deposit){
-      toolCards.value.push({title: '对公存款', total: `${deposit.total}亿元`, c2d: `${deposit.c2d}万元`, c2by: `${deposit.c2by}万元`})
+      toolCards.value.push({title: '对公存款', total: deposit.total, totalUnit:'亿元', c2d: deposit.c2d, c2dUnit:'万元', c2by: deposit.c2by, c2byUnit:'万元'})
     }
     let loan = await fetchLoanDataByBranch('Sub', userStore.userInfo.institutionId)
-    toolCards.value.push({title: '各项贷款', total: `${loan.total}万元`, c2d: `${loan.c2d}万元`, c2by: `${loan.c2by}万元`})
+    toolCards.value.push({title: '各项贷款', total: loan.total, totalUnit:'万元', c2d: loan.c2d, c2dUnit:'万元', c2by: loan.c2by, c2byUnit:'万元'})
   }
 }
 
@@ -172,12 +171,12 @@ const getDetailData = async(startDate, endDate) => {
   let detailList = []
   if (1 == selInstitution.value.institutionLevel){
     let deposit = await fetchDepositDataBank(startDate, endDate)
-    console.log(deposit.list)
     if (deposit.list){
       detailList.push({label: '存款', name:'deposit', detail:{
         dayCount: deposit.list.length,
         seriesCount: 2,
         lable: ['储蓄存款', '对公存款'],
+        unit: '亿元',
         color: color,
         data: [deposit.list.map(function(obj){
           return {date: obj.date, val: obj.save.total}
@@ -187,16 +186,16 @@ const getDetailData = async(startDate, endDate) => {
       }})
     }
     let loan = await fetchLoanDataBank(startDate, endDate)
-    console.log(loan)
-    if (0){
+    if (loan.list){
       detailList.push({label: '贷款', name:'loan', detail:{
-        dayCount: deposit.list.length,
+        dayCount: loan.list.length,
         seriesCount: 2,
         lable: ['对公贷款', '个人贷款'],
+        unit: '万元',
         color: color,
-        data: [deposit.list.map(function(obj){
+        data: [loan.list.map(function(obj){
           return {date: obj.date, val: obj.corp.total}
-        }), deposit.list.map(function(obj){
+        }), loan.list.map(function(obj){
           return {date: obj.date, val: obj.pers.total}
         })],
       }})
@@ -214,6 +213,7 @@ const getDetailData = async(startDate, endDate) => {
         dayCount: depositCorp.list.length,
         seriesCount: 3,
         lable: ['对公存款', '储蓄存款', '活期存款'],
+        unit: '亿元',
         color: color,
         data: [depositCorp.list.map(function(obj){
           return {date: obj.date, val: obj.total}
@@ -229,6 +229,7 @@ const getDetailData = async(startDate, endDate) => {
         dayCount: loanCorp.list.length,
         seriesCount: 2,
         lable: ['对公贷款', '个人贷款'],
+        unit: '万元',
         color: color,
         data: [loanCorp.list.map(function(obj){
           return {date: obj.date, val: obj.total}
@@ -328,10 +329,12 @@ const fetchLoanDataBank = async(startDate = 0, endDate = 0) =>{
   }
   return {}
 }
-
+const fetchTop50 = async() =>{
+  
+}
 const tabChange = (tab) => {
   curTabIndex.value = tab.index
-  curDetail.value = detailData.value[tab.index].detail
+  curDetail.value = detailData.value[tab.index]
 }
 const institutionChange = async(i) => {
   if (i === userStore.userInfo.institutionId){
@@ -368,18 +371,20 @@ const toTarget = (name) => {
       .gva-card-title{
         @apply pb-5 border-t-0 border-l-0 border-r-0 border-b border-solid border-gray-100;
       }
-      .date-picker{
-        position: absolute;
-        right:150px;
-        top:40px;
-        height: 40px;
-      }
-      .institution-selecter{
+      .option-card{
         position: absolute;
         right:38px;
         top:40px;
-        height: 40px;
-        width: 100px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        .date-picker{
+          height: 40px;
+        }
+        .institution-selecter{
+          height: 40px;
+          width: 100px;
+        }
       }
     }
     .gva-top-card {

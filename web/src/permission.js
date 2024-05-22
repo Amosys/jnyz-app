@@ -10,6 +10,7 @@ const getRouter = async(userStore) => {
   const routerStore = useRouterStore()
   await routerStore.SetAsyncRouter()
   await userStore.GetUserInfo()
+  await userStore.GetInstitutionInfo()
   const asyncRouters = routerStore.asyncRouters
   asyncRouters.forEach(asyncRouter => {
     router.addRoute(asyncRouter)
