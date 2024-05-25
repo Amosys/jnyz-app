@@ -329,8 +329,18 @@ const fetchLoanDataBank = async(startDate = 0, endDate = 0) =>{
   }
   return {}
 }
-const fetchTop50 = async() =>{
-  
+const fetchTop50 = async(startDate, endDate) =>{
+  if (startDate && endDate){
+    let res = await getDALDataList(`depositTop50`, 
+      {startDate: startDate, endDate: endDate, page: 1, pageSize: 50})
+    if (res.code === 0){
+      const top50 = res.data
+      return {list: top50.list.map(function(obj){
+        return {date: obj.DT, no: obj.NO, name: obj.CUST_NAME, total: obj.DBAL, c2d: obj.NETINFLOW_DAY}
+      })}
+    }
+  }
+  return {}
 }
 const tabChange = (tab) => {
   curTabIndex.value = tab.index
